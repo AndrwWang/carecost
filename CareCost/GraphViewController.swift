@@ -23,14 +23,20 @@ class GraphViewController: UIViewController {
         "southwest" : -373.04175627250527
     ]
     
+    @IBOutlet weak var resultLabel: UILabel!
     private var chartView: LineChartView!
     
-    private var age: Int = -1
-    private var sex: String = ""
-    private var numOfChildren: Int = -1
-    private var bmi: Double = -1
-    private var smoker: String = ""
-    private var region: String = ""
+    private var sliderValue = 5
+    @IBOutlet weak var yearSlider: UISlider!
+    @IBOutlet weak var yearLabel: UILabel!
+    
+    //default values for now
+    private var age: Int = 18
+    private var sex: String = "male"
+    private var numOfChildren: Int = 1
+    private var bmi: Double = 23.2
+    private var smoker: String = "yes"
+    private var region: String = "southeast"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +44,47 @@ class GraphViewController: UIViewController {
         self.view.backgroundColor = Theme.VIEW_BACKGROUND_COLOR
         
         setUpChart()
+        setUpSlider()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        
     }
     
     // MARK: Display
+    
+    private func setUpSlider() {
+        yearSlider.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            yearSlider.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 3),
+            yearSlider.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 3),
+            yearSlider.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 10)
+        ])
+        
+        yearSlider.minimumValue = 1
+        yearSlider.maximumValue = 10
+        yearSlider.value = Float(sliderValue)
+        yearSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+        
+        yearLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            yearLabel.topAnchor.constraint(equalTo: yearSlider.bottomAnchor, constant: 10),
+            yearLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
+            //yearLabel.leftAnchor.constraint(equalTo: yearSlider.leftAnchor),
+            //yearLabel.rightAnchor.constraint(equalTo: yearSlider.rightAnchor),
+        ])
+        
+        yearLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+        yearLabel.textAlignment = .center
+        yearLabel.text = "Look ahead: " + String(sliderValue) + " years"
+    }
+    
+    private func setChartData() {
+        let dataset = LineChartDataSet(entries: getGraphData(), label: "Charge")
+        let data = LineChartData(dataSet: dataset)
+        chartView.data = data
+        chartView.data?.setValueFormatter(DigitValueFormatter())
+    }
     
     private func setUpChart() {
         chartView = LineChartView()
@@ -54,11 +98,8 @@ class GraphViewController: UIViewController {
             chartView.heightAnchor.constraint(equalTo: chartView.widthAnchor)
         ])
         
-        //set the data
-        let dataset = LineChartDataSet(entries: getGraphData(), label: "Charge")
-        let data = LineChartData(dataSet: dataset)
-        chartView.data = data
-        chartView.data?.setValueFormatter(DigitValueFormatter())
+        chartView.data?.setValueFont(UIFont(name: Theme.DEFAULT_FONT, size: 12)!)
+        setChartData()
     }
     
     // MARK: Helper
@@ -75,7 +116,7 @@ class GraphViewController: UIViewController {
     private func getGraphData() -> [ChartDataEntry] {
         var data: [ChartDataEntry] = []
         
-        for i in age...(age + 10) {
+        for i in age...(age + sliderValue) {
             data.append(ChartDataEntry(x: Double(i), y: calcCharge(i)))
         }
         
@@ -93,7 +134,12 @@ class GraphViewController: UIViewController {
     
     // MARK: Actions
     
-    
+    @objc func sliderValueChanged() {
+        sliderValue = Int(yearSlider.value.rounded())
+        
+        setChartData()
+        yearLabel.text = "Look ahead: " + String(sliderValue) + " years"
+    }
 }
 
 

@@ -322,15 +322,15 @@ class InputViewController: UIViewController, UITextFieldDelegate {
             region = "southeast"
         }
         
-        let age = Int(ageTextField.text!)!
+        /*let age = Int(ageTextField.text!)!
         let sex = sexTextField.text!
         let bmi = Double(bmiTextField.text!)!
         let numberOfChildren = Int(childrenTextField.text!)!
-        let smokerStatus = smokerTextField.text!
+        let smokerStatus = smokerTextField.text!*/
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "GraphViewController") as! GraphViewController
-        vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
+        //vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
 
         navigationController!.pushViewController(vc, animated: true)
     }
