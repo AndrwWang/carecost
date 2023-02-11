@@ -8,11 +8,15 @@
 import UIKit
 
 class Theme {
+    public static let DEFAULT_FONT = "KannadaSangamMN-Bold"
+    public static let DEFAULT_TEXT_COLOR = UIColor(hex: "#3d5a6cFF")
+    
     public static let VIEW_BACKGROUND_COLOR = UIColor(hex: "#E8998DFF")
     
     public static let BUTTON_BACKGROUND_COLOR = UIColor(hex: "#723D46FF")
     public static let BUTTON_TEXT_COLOR = UIColor(hex: "#F4F0BBFF")
     public static let BUTTON_PADDING = CGFloat(10)
+    public static let BUTTON_FONT_SIZE = CGFloat(28)
     
     public static let CORNER_RADIUS = CGFloat(10)
     
