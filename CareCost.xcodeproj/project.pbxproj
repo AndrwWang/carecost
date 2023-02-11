@@ -20,6 +20,7 @@
 		C26D94722997A56200C8E5C4 /* CCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26D94712997A56200C8E5C4 /* CCTextField.swift */; };
 		C26D947D2997C2EB00C8E5C4 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C26D94792997C2D400C8E5C4 /* Charts.framework */; };
 		C26D947E2997C2EB00C8E5C4 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C26D94792997C2D400C8E5C4 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C26D94822997D13900C8E5C4 /* DigitalValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26D94812997D13900C8E5C4 /* DigitalValueFormatter.swift */; };
 		C27B9142299774700065C008 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27B9141299774700065C008 /* WelcomeViewController.swift */; };
 		C2F9F47B2997764000034CE6 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F9F47A2997764000034CE6 /* InputViewController.swift */; };
 		C2F9F47D299778D500034CE6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F9F47C299778D500034CE6 /* Theme.swift */; };
@@ -88,6 +89,7 @@
 		C26D946F2997A3B500C8E5C4 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		C26D94712997A56200C8E5C4 /* CCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCTextField.swift; sourceTree = "<group>"; };
 		C26D94732997C2D400C8E5C4 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = "<group>"; };
+		C26D94812997D13900C8E5C4 /* DigitalValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalValueFormatter.swift; sourceTree = "<group>"; };
 		C27B9141299774700065C008 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		C2F9F47A2997764000034CE6 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		C2F9F47C299778D500034CE6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				C27B9141299774700065C008 /* WelcomeViewController.swift */,
 				C2F9F47A2997764000034CE6 /* InputViewController.swift */,
 				C26D946F2997A3B500C8E5C4 /* GraphViewController.swift */,
+				C26D94812997D13900C8E5C4 /* DigitalValueFormatter.swift */,
 				C26D94712997A56200C8E5C4 /* CCTextField.swift */,
 				C2F9F47C299778D500034CE6 /* Theme.swift */,
 				C23BFE74299767E000D129C4 /* Main.storyboard */,
@@ -356,6 +359,7 @@
 				C23BFE6F299767E000D129C4 /* AppDelegate.swift in Sources */,
 				C2F9F47D299778D500034CE6 /* Theme.swift in Sources */,
 				C26D94702997A3B500C8E5C4 /* GraphViewController.swift in Sources */,
+				C26D94822997D13900C8E5C4 /* DigitalValueFormatter.swift in Sources */,
 				C23BFE71299767E000D129C4 /* SceneDelegate.swift in Sources */,
 				C2F9F47B2997764000034CE6 /* InputViewController.swift in Sources */,
 				010ADF062997B322002ADA20 /* InformationViewController.swift in Sources */,

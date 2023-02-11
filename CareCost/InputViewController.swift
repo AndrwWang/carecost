@@ -301,7 +301,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func submitClicked() {
-        let northwest = ["Alaska", "Colorado", "Idaho", "Montana", "Nebraska", "North Dakota", "Oregon", "South Dakota", "Washington", "Wyoming"]
+        let northwest = ["Alaska", "Colorado", "Idaho", "Iowa", "Montana", "Nebraska", "North Dakota", "Oregon", "South Dakota", "Washington", "Wyoming"]
         let northeast = ["Connecticut", "Delaware", "District of Columbia", "Illinois", "Indiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "New Hampshire", "New Jersey", "New York", "Ohio", "Pennsylvania", "Rhode Island", "Vermont", "Wisconsin"]
         let southwest = ["Arizona", "California", "Hawaii", "Kansas", "Kentucky", "Louisiana", "Nevada", "New Mexico", "Oklahoma", "Texas", "Utah" ]
         let southeast = ["Alabama", "Arkansas", "Florida", "Georgia", "Mississippi", "Missouri", "North Carolina", "South Carolina", "Tennessee", "Virginia", "West Virginia"]
@@ -316,14 +316,15 @@ class InputViewController: UIViewController, UITextFieldDelegate {
             region = "southeast"
         }
         
-        let age = Int(ageTextField.text!)
+        let age = Int(ageTextField.text!)!
         let sex = sexTextField.text!
-        let bmi = Double(bmiTextField.text!)
-        let numberOfChildren = Int(childrenTextField.text!)
+        let bmi = Double(bmiTextField.text!)!
+        let numberOfChildren = Int(childrenTextField.text!)!
         let smokerStatus = smokerTextField.text!
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "GraphViewController")
+        let vc = storyboard.instantiateViewController(withIdentifier: "GraphViewController") as! GraphViewController
+        vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
 
         navigationController!.pushViewController(vc, animated: true)
     }
