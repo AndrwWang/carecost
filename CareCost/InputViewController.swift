@@ -8,6 +8,7 @@
 import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var logoView: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var privacyLabel: UILabel!
@@ -55,6 +56,10 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         configureSmoker()
         configureState()
         configureSubmit()
+        
+        UIView.animate(withDuration: 15, animations: {
+            self.logoView.frame.origin.y -= 1000
+        }, completion: nil)
     }
     
     // MARK: Display
@@ -297,6 +302,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func bmiClicked() {
+        
         
     }
     

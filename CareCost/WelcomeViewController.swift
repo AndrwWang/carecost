@@ -8,6 +8,7 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
+    @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var welcomeTextView: UITextView!
@@ -30,6 +31,10 @@ class WelcomeViewController: UIViewController {
         configureNameTextField()
         configureWelcomeTextView()
         configureStartButton()
+        
+        UIView.animate(withDuration: 14, animations: {
+            self.logoView.frame.origin.y -= 1000
+        }, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {
