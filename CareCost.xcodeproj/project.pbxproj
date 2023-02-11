@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010ADF062997B322002ADA20 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010ADF052997B322002ADA20 /* InformationViewController.swift */; };
 		C23BFE6F299767E000D129C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BFE6E299767E000D129C4 /* AppDelegate.swift */; };
 		C23BFE71299767E000D129C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BFE70299767E000D129C4 /* SceneDelegate.swift */; };
 		C23BFE76299767E000D129C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23BFE74299767E000D129C4 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010ADF052997B322002ADA20 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		C23BFE6B299767E000D129C4 /* CareCost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareCost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23BFE6E299767E000D129C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23BFE70299767E000D129C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				C26D94712997A56200C8E5C4 /* CCTextField.swift */,
 				C2F9F47C299778D500034CE6 /* Theme.swift */,
 				C23BFE74299767E000D129C4 /* Main.storyboard */,
+				010ADF052997B322002ADA20 /* InformationViewController.swift */,
 				C23BFE77299767E100D129C4 /* Assets.xcassets */,
 				C23BFE79299767E100D129C4 /* LaunchScreen.storyboard */,
 				C23BFE7C299767E100D129C4 /* Info.plist */,
@@ -281,6 +284,7 @@
 				C26D94702997A3B500C8E5C4 /* GraphViewController.swift in Sources */,
 				C23BFE71299767E000D129C4 /* SceneDelegate.swift in Sources */,
 				C2F9F47B2997764000034CE6 /* InputViewController.swift in Sources */,
+				010ADF062997B322002ADA20 /* InformationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
