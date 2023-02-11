@@ -196,6 +196,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JY2-1T-7eq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1495" y="4"/>
+        </scene>
         <!--Information View Controller-->
         <scene sceneID="BmQ-dp-dI0">
             <objects>

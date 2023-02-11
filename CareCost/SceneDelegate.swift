@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeViewController")
         let navViewController =  UINavigationController(rootViewController: viewController)
-            //window?.rootViewController = navViewController
+        window?.rootViewController = navViewController
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

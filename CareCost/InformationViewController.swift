@@ -17,7 +17,7 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         informationLabel.text = "Click the buttons above to learn more!"
-        moreInfoLabel = Link(destination: URL(string: "))
+        //moreInfoLabel = Link(destination: URL(string: "))
         
     }
     
