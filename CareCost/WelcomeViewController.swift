@@ -8,13 +8,12 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
-    
-    
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var welcomeTextView: UITextView!
     
-    @IBOutlet weak var nameTextField: UITextField!
+    //@IBOutlet weak var nameTextField: UITextField!
+    private var nameTextField: CCTextField!
     @IBOutlet weak var startButton: UIButton!
     
     private var name: String?
@@ -28,13 +27,13 @@ class WelcomeViewController: UIViewController {
         
         configureWelcomeLabel()
         configureAppNameLabel()
-        configureWelcomeTextView()
         configureNameTextField()
+        configureWelcomeTextView()
         configureStartButton()
     }
     
     override func viewDidLayoutSubviews() {
-        print(appNameLabel.hasAmbiguousLayout)
+        print(nameTextField.hasAmbiguousLayout)
         print(appNameLabel.frame.width)
         print(appNameLabel.frame.height)
     }
@@ -67,7 +66,6 @@ class WelcomeViewController: UIViewController {
         appNameLabel.layer.contentsGravity = .center
         appNameLabel.attributedText = NSAttributedString(string: "CareCost",
                                                          attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 32)!,
-                                                                      NSAttributedString.Key.underlineStyle : NSUnderlineStyle.thick.rawValue,
                                                                       NSAttributedString.Key.strokeWidth : -2])
     }
     
@@ -88,12 +86,16 @@ class WelcomeViewController: UIViewController {
     }
     
     private func configureNameTextField() {
+        nameTextField = CCTextField(placeholder: "Name (optional)")
+        self.view.addSubview(nameTextField)
+        
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: Theme.SCREEN_WIDTH / 7).isActive = true
         nameTextField.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -Theme.SCREEN_WIDTH / 7).isActive = true
         nameTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         nameTextField.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
+        /*
         nameTextField.placeholder = "Name (optional)"
         nameTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: Theme.BUTTON_PADDING, height: nameTextField.frame.height))
         nameTextField.leftViewMode = .always
@@ -102,6 +104,8 @@ class WelcomeViewController: UIViewController {
         nameTextField.layer.cornerRadius = Theme.CORNER_RADIUS
         nameTextField.layer.borderColor = Theme.BUTTON_BACKGROUND_COLOR!.cgColor
         nameTextField.clipsToBounds = true
+         */
+        
         nameTextField.addTarget(self, action: #selector(nameFieldEdited), for: .editingChanged)
         
     }
@@ -133,9 +137,7 @@ class WelcomeViewController: UIViewController {
     @objc func toInputVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "InputViewController")
-        //vc.modalPresentationStyle = .fullScreen
-        //self.present(vc, animated: true)
-        print("hi")
+
         navigationController!.pushViewController(vc, animated: true)
     }
 }

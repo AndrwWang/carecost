@@ -8,6 +8,10 @@
 import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var privacyLabel: UILabel!
+    
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var sexTextField: UITextField!
     
@@ -28,9 +32,15 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     let states = ["", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
     var statePickerView = UIPickerView()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = Theme.VIEW_BACKGROUND_COLOR
+        
+        setUpTitleLabel()
+        setUpPrivacyLabel()
+        
         sexPickerView.delegate = self
         sexPickerView.dataSource = self
         sexTextField.inputView = sexPickerView
@@ -54,14 +64,41 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         childrenTextField.delegate = self
     }
     
+    // MARK: Display
+    
+    private func setUpTitleLabel() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 7),
+            titleLabel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 7)
+        ])
+        
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 20)
+    }
+    
+    private func setUpPrivacyLabel() {
+        privacyLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            privacyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            privacyLabel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 8),
+            privacyLabel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 8)
+        ])
+        
+        privacyLabel.textAlignment = .center
+        privacyLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 14)
+    }
+    
+    // MARK: Actions
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-             let digits = "1234567890."
-             let digitSet = CharacterSet(charactersIn: digits)
-            let typedDigitSet = CharacterSet(charactersIn: string)
-            return digitSet .isSuperset(of: typedDigitSet)
+        let digits = "1234567890."
+        let digitSet = CharacterSet(charactersIn: digits)
+        let typedDigitSet = CharacterSet(charactersIn: string)
         
-        
-       }
+        return digitSet .isSuperset(of: typedDigitSet)
+    }
     
     @IBAction func submitButton(_ sender: UIButton) {
         let northwest = ["Alaska", "Colorado", "Idaho", "Montana", "Nebraska", "North Dakota", "Oregon", "South Dakota", "Washington", "Wyoming"]
@@ -85,13 +122,10 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         let numberOfChildren = Int(childrenTextField.text!)
         let smokerStatus = smokerTextField.text!
         
-        print(age)
-        print(sex)
-        print(bmi)
-        print(numberOfChildren)
-        print(smokerStatus)
-        print(region)
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "GraphViewController")
+
+        navigationController!.pushViewController(vc, animated: true)
     }
 }
 
@@ -143,7 +177,7 @@ extension InputViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 }
-    
+
 
 
 
