@@ -15,10 +15,10 @@
 		C23BFE86299767E100D129C4 /* CareCostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BFE85299767E100D129C4 /* CareCostTests.swift */; };
 		C23BFE90299767E100D129C4 /* CareCostUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BFE8F299767E100D129C4 /* CareCostUITests.swift */; };
 		C23BFE92299767E100D129C4 /* CareCostUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23BFE91299767E100D129C4 /* CareCostUITestsLaunchTests.swift */; };
-		C23BFEA1299773F800D129C4 /* kannada-sangam-mn-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C23BFEA0299773F800D129C4 /* kannada-sangam-mn-bold.ttf */; };
 		C27B9142299774700065C008 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27B9141299774700065C008 /* WelcomeViewController.swift */; };
 		C2F9F47B2997764000034CE6 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F9F47A2997764000034CE6 /* InputViewController.swift */; };
 		C2F9F47D299778D500034CE6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F9F47C299778D500034CE6 /* Theme.swift */; };
+		C2F9F47F299790B200034CE6 /* kannada-sangam-mn-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2F9F47E299790B200034CE6 /* kannada-sangam-mn-bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,10 +51,10 @@
 		C23BFE8B299767E100D129C4 /* CareCostUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CareCostUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23BFE8F299767E100D129C4 /* CareCostUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareCostUITests.swift; sourceTree = "<group>"; };
 		C23BFE91299767E100D129C4 /* CareCostUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareCostUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C23BFEA0299773F800D129C4 /* kannada-sangam-mn-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "kannada-sangam-mn-bold.ttf"; path = "/Users/fgao/dev/gatech/carecost/CareCost/../../../../Downloads/kannada-sangam-mn-bold.ttf"; sourceTree = "<absolute>"; };
 		C27B9141299774700065C008 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		C2F9F47A2997764000034CE6 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		C2F9F47C299778D500034CE6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		C2F9F47E299790B200034CE6 /* kannada-sangam-mn-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "kannada-sangam-mn-bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +105,7 @@
 		C23BFE6D299767E000D129C4 /* CareCost */ = {
 			isa = PBXGroup;
 			children = (
+				C2F9F47E299790B200034CE6 /* kannada-sangam-mn-bold.ttf */,
 				C23BFE6E299767E000D129C4 /* AppDelegate.swift */,
 				C23BFE70299767E000D129C4 /* SceneDelegate.swift */,
 				C27B9141299774700065C008 /* WelcomeViewController.swift */,
@@ -112,7 +113,6 @@
 				C2F9F47C299778D500034CE6 /* Theme.swift */,
 				C23BFE74299767E000D129C4 /* Main.storyboard */,
 				C23BFE77299767E100D129C4 /* Assets.xcassets */,
-				C23BFEA0299773F800D129C4 /* kannada-sangam-mn-bold.ttf */,
 				C23BFE79299767E100D129C4 /* LaunchScreen.storyboard */,
 				C23BFE7C299767E100D129C4 /* Info.plist */,
 			);
@@ -242,7 +242,7 @@
 			files = (
 				C23BFE7B299767E100D129C4 /* LaunchScreen.storyboard in Resources */,
 				C23BFE78299767E100D129C4 /* Assets.xcassets in Resources */,
-				C23BFEA1299773F800D129C4 /* kannada-sangam-mn-bold.ttf in Resources */,
+				C2F9F47F299790B200034CE6 /* kannada-sangam-mn-bold.ttf in Resources */,
 				C23BFE76299767E000D129C4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
