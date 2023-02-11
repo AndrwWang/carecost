@@ -14,8 +14,10 @@ class CCTextField: UITextField {
         
         self.placeholder = placeholder
         backgroundColor = .white
-        leftView = UIView(frame: CGRect(x: 0, y: 0, width: Theme.BUTTON_PADDING, height: 0))
-        leftViewMode = .always
+        if !placeholder.isEmpty {
+            leftView = UIView(frame: CGRect(x: 0, y: 0, width: Theme.BUTTON_PADDING, height: 0))
+            leftViewMode = .always
+        }
         font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
         
         borderStyle = .roundedRect

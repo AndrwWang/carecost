@@ -12,17 +12,23 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var privacyLabel: UILabel!
     
-    @IBOutlet weak var ageTextField: UITextField!
-    @IBOutlet weak var sexTextField: UITextField!
+    @IBOutlet weak var ageLabel: UILabel!
+    private var ageTextField: UITextField!
+    @IBOutlet weak var sexLabel: UILabel!
+    private var sexTextField: UITextField!
+    @IBOutlet weak var childrenLabel: UILabel!
+    private var childrenTextField: UITextField!
     
-    @IBOutlet weak var bmiTextField: UITextField!
+    @IBOutlet weak var bmiLabel: UILabel!
+    private var bmiTextField: UITextField!
+    @IBOutlet weak var bmiButton: UIButton!
     
-    @IBOutlet weak var childrenTextField: UITextField!
+    @IBOutlet weak var smokerLabel: UILabel!
+    private var smokerTextField: UITextField!
+    @IBOutlet weak var stateLabel: UILabel!
+    private var stateTextField: UITextField!
     
-    @IBOutlet weak var smokerTextField: UITextField!
-    
-    @IBOutlet weak var stateTextField: UITextField!
-    
+    @IBOutlet weak var submitButton: UIButton!
     let sexes = ["", "Female", "Male"]
     var sexPickerView = UIPickerView()
     
@@ -32,16 +38,24 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     let states = ["", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
     var statePickerView = UIPickerView()
     
+    private var labelTextFieldPadding = CGFloat(10)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = Theme.VIEW_BACKGROUND_COLOR
         
-        setUpTitleLabel()
-        setUpPrivacyLabel()
+        configureTitleLabel()
+        configurePrivacyLabel()
         
-        sexPickerView.delegate = self
+        configureAge()
+        configureSex()
+        configureNumChildren()
+        configureBMI()
+        /*configureSmoke()
+        configureState()*/
+        
+        /*sexPickerView.delegate = self
         sexPickerView.dataSource = self
         sexTextField.inputView = sexPickerView
         sexTextField.textAlignment = .center
@@ -61,12 +75,12 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         
         ageTextField.delegate = self
         bmiTextField.delegate = self
-        childrenTextField.delegate = self
+        childrenTextField.delegate = self*/
     }
     
     // MARK: Display
     
-    private func setUpTitleLabel() {
+    private func configureTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -78,7 +92,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         titleLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 20)
     }
     
-    private func setUpPrivacyLabel() {
+    private func configurePrivacyLabel() {
         privacyLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             privacyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
@@ -90,6 +104,103 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         privacyLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 14)
     }
     
+    private func configureAge() {
+        ageTextField = CCTextField(placeholder: "")
+        self.view.addSubview(ageTextField)
+        
+        ageTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            ageTextField.topAnchor.constraint(equalTo: privacyLabel.bottomAnchor, constant: 30),
+            ageTextField.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH * 5 / 11),
+            ageTextField.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH * 3 / 10)
+        ])
+        
+        ageTextField.textAlignment = .center
+        
+        ageLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            ageLabel.rightAnchor.constraint(equalTo: ageTextField.leftAnchor, constant: -labelTextFieldPadding),
+            ageLabel.topAnchor.constraint(equalTo: ageTextField.topAnchor),
+            ageLabel.bottomAnchor.constraint(equalTo: ageTextField.bottomAnchor)
+                                                
+        ])
+        
+        ageLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+    }
+    
+    private func configureSex() {
+        sexTextField = CCTextField(placeholder: "")
+        self.view.addSubview(sexTextField)
+        
+        sexTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sexTextField.topAnchor.constraint(equalTo: ageTextField.bottomAnchor, constant: labelTextFieldPadding * 1.5),
+            sexTextField.leftAnchor.constraint(equalTo: ageTextField.leftAnchor),
+            sexTextField.rightAnchor.constraint(equalTo: ageTextField.rightAnchor)
+        ])
+        
+        sexTextField.textAlignment = .center
+        
+        sexLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sexLabel.rightAnchor.constraint(equalTo: sexTextField.leftAnchor, constant: -labelTextFieldPadding),
+            sexLabel.topAnchor.constraint(equalTo: sexTextField.topAnchor),
+            sexLabel.bottomAnchor.constraint(equalTo: sexTextField.bottomAnchor)
+                                                
+        ])
+        
+        sexLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+    }
+    
+    private func configureNumChildren() {
+        childrenTextField = CCTextField(placeholder: "")
+        self.view.addSubview(childrenTextField)
+        
+        childrenTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            childrenTextField.topAnchor.constraint(equalTo: sexTextField.bottomAnchor, constant: labelTextFieldPadding * 1.5),
+            childrenTextField.leftAnchor.constraint(equalTo: sexTextField.leftAnchor),
+            childrenTextField.rightAnchor.constraint(equalTo: sexTextField.rightAnchor)
+        ])
+        
+        childrenTextField.textAlignment = .center
+        
+        childrenLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            childrenLabel.rightAnchor.constraint(equalTo: childrenTextField.leftAnchor, constant: -labelTextFieldPadding),
+            childrenLabel.topAnchor.constraint(equalTo: childrenTextField.topAnchor),
+            childrenLabel.bottomAnchor.constraint(equalTo: childrenTextField.bottomAnchor)
+                                                
+        ])
+        
+        childrenLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+    }
+    
+    private func configureBMI() {
+        bmiTextField = CCTextField(placeholder: "")
+        self.view.addSubview(bmiTextField)
+        
+        bmiTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bmiTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            bmiTextField.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            bmiTextField.widthAnchor.constraint(equalToConstant: Theme.SCREEN_WIDTH / 7)
+        ])
+        
+        bmiTextField.textAlignment = .center
+        
+        bmiLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bmiLabel.rightAnchor.constraint(equalTo: bmiTextField.leftAnchor, constant: -labelTextFieldPadding),
+            bmiLabel.topAnchor.constraint(equalTo: bmiTextField.topAnchor),
+            bmiLabel.bottomAnchor.constraint(equalTo: bmiTextField.bottomAnchor)
+        ])
+        
+        bmiLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+        
+        bmiButton.translatesAutoresizingMaskIntoConstraints = false
+        
+    }
     // MARK: Actions
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -97,7 +208,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         let digitSet = CharacterSet(charactersIn: digits)
         let typedDigitSet = CharacterSet(charactersIn: string)
         
-        return digitSet .isSuperset(of: typedDigitSet)
+        return digitSet.isSuperset(of: typedDigitSet)
     }
     
     @IBAction func submitButton(_ sender: UIButton) {
