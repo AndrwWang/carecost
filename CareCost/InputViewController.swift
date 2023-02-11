@@ -52,30 +52,9 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         configureSex()
         configureNumChildren()
         configureBMI()
-        /*configureSmoke()
-        configureState()*/
-        
-        /*sexPickerView.delegate = self
-        sexPickerView.dataSource = self
-        sexTextField.inputView = sexPickerView
-        sexTextField.textAlignment = .center
-        sexPickerView.tag = 1
-        
-        smokerPickerView.delegate = self
-        smokerPickerView.dataSource = self
-        smokerTextField.inputView = smokerPickerView
-        smokerTextField.textAlignment = .center
-        smokerPickerView.tag = 2
-        
-        statePickerView.delegate = self
-        statePickerView.dataSource = self
-        stateTextField.inputView = statePickerView
-        stateTextField.textAlignment = .center
-        statePickerView.tag = 3
-        
-        ageTextField.delegate = self
-        bmiTextField.delegate = self
-        childrenTextField.delegate = self*/
+        configureSmoker()
+        configureState()
+        configureSubmit()
     }
     
     // MARK: Display
@@ -106,6 +85,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     
     private func configureAge() {
         ageTextField = CCTextField(placeholder: "")
+        ageTextField.delegate = self
         self.view.addSubview(ageTextField)
         
         ageTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -150,10 +130,17 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         ])
         
         sexLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+        
+        sexPickerView.delegate = self
+        sexPickerView.dataSource = self
+        sexTextField.inputView = sexPickerView
+        sexTextField.textAlignment = .center
+        sexPickerView.tag = 1
     }
     
     private func configureNumChildren() {
         childrenTextField = CCTextField(placeholder: "")
+        childrenTextField.delegate = self
         self.view.addSubview(childrenTextField)
         
         childrenTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -178,11 +165,12 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     
     private func configureBMI() {
         bmiTextField = CCTextField(placeholder: "")
+        bmiTextField.delegate = self
         self.view.addSubview(bmiTextField)
         
         bmiTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bmiTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            bmiTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -Theme.SCREEN_WIDTH / 8),
             bmiTextField.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             bmiTextField.widthAnchor.constraint(equalToConstant: Theme.SCREEN_WIDTH / 7)
         ])
@@ -199,8 +187,105 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         bmiLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
         
         bmiButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bmiButton.leftAnchor.constraint(equalTo: bmiTextField.rightAnchor, constant: labelTextFieldPadding),
+            bmiButton.widthAnchor.constraint(equalToConstant: Theme.SCREEN_WIDTH * 3 / 10),
+            bmiButton.topAnchor.constraint(equalTo: bmiTextField.topAnchor),
+            bmiButton.bottomAnchor.constraint(equalTo: bmiTextField.bottomAnchor)
+        ])
         
+        let bmiButtonTitle = NSAttributedString(string: "What is my BMI?",
+                                                           attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 12)!,
+                                                                        NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR!])
+        bmiButton.setAttributedTitle(bmiButtonTitle, for: .normal)
+        
+        bmiButton.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
+        bmiButton.titleLabel!.textAlignment = .center
+        
+        bmiButton.layer.cornerRadius = Theme.CORNER_RADIUS
+        bmiButton.addTarget(self, action: #selector(bmiClicked), for: .touchUpInside)
     }
+    
+    private func configureSmoker() {
+        smokerTextField = CCTextField(placeholder: "")
+        self.view.addSubview(smokerTextField)
+        
+        smokerTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            smokerTextField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: Theme.SCREEN_HEIGHT / 2),
+            //smokerTextField.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -Theme.SCREEN_HEIGHT / 5),
+            smokerTextField.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH * 3 / 5),
+            smokerTextField.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 5),
+        ])
+        
+        smokerTextField.textAlignment = .center
+        
+        smokerLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            smokerLabel.rightAnchor.constraint(equalTo: smokerTextField.leftAnchor, constant: -labelTextFieldPadding),
+            smokerLabel.topAnchor.constraint(equalTo: smokerTextField.topAnchor),
+            smokerLabel.bottomAnchor.constraint(equalTo: smokerTextField.bottomAnchor)
+                                                
+        ])
+        
+        smokerLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+        
+        smokerPickerView.delegate = self
+        smokerPickerView.dataSource = self
+        smokerTextField.inputView = smokerPickerView
+        smokerTextField.textAlignment = .center
+        smokerPickerView.tag = 2
+    }
+    
+    private func configureState() {
+        stateTextField = CCTextField(placeholder: "")
+        self.view.addSubview(stateTextField)
+        
+        stateTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stateTextField.topAnchor.constraint(equalTo: smokerTextField.bottomAnchor, constant: labelTextFieldPadding * 1.5),
+            stateTextField.leftAnchor.constraint(equalTo: smokerTextField.leftAnchor),
+            stateTextField.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 12)
+        ])
+        
+        stateTextField.textAlignment = .center
+        stateTextField.font = UIFont(name: Theme.DEFAULT_FONT, size: 12a)
+        
+        stateLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            stateLabel.rightAnchor.constraint(equalTo: stateTextField.leftAnchor, constant: -labelTextFieldPadding),
+            stateLabel.topAnchor.constraint(equalTo: stateTextField.topAnchor),
+            stateLabel.bottomAnchor.constraint(equalTo: stateTextField.bottomAnchor)
+                                                
+        ])
+        
+        stateLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+        
+        statePickerView.delegate = self
+        statePickerView.dataSource = self
+        stateTextField.inputView = statePickerView
+        stateTextField.textAlignment = .center
+        statePickerView.tag = 3
+    }
+    
+    private func configureSubmit() {
+        submitButton.translatesAutoresizingMaskIntoConstraints = false
+        submitButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: Theme.SCREEN_WIDTH / 3).isActive = true
+        submitButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -Theme.SCREEN_WIDTH / 3).isActive = true
+        submitButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        submitButton.topAnchor.constraint(equalTo: stateTextField.bottomAnchor, constant: 40).isActive = true
+        
+        let startTitle = NSAttributedString(string: "Submit!",
+                                                           attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: Theme.BUTTON_FONT_SIZE)!,
+                                                                        NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR!])
+        submitButton.setAttributedTitle(startTitle, for: .normal)
+        submitButton.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
+        submitButton.titleLabel!.textAlignment = .center
+        
+        submitButton.layer.cornerRadius = Theme.CORNER_RADIUS
+        submitButton.addTarget(self, action: #selector(submitClicked), for: .touchUpInside)
+    }
+    
     // MARK: Actions
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -211,7 +296,11 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         return digitSet.isSuperset(of: typedDigitSet)
     }
     
-    @IBAction func submitButton(_ sender: UIButton) {
+    @objc func bmiClicked() {
+        
+    }
+    
+    @objc func submitClicked() {
         let northwest = ["Alaska", "Colorado", "Idaho", "Montana", "Nebraska", "North Dakota", "Oregon", "South Dakota", "Washington", "Wyoming"]
         let northeast = ["Connecticut", "Delaware", "District of Columbia", "Illinois", "Indiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "New Hampshire", "New Jersey", "New York", "Ohio", "Pennsylvania", "Rhode Island", "Vermont", "Wisconsin"]
         let southwest = ["Arizona", "California", "Hawaii", "Kansas", "Kentucky", "Louisiana", "Nevada", "New Mexico", "Oklahoma", "Texas", "Utah" ]

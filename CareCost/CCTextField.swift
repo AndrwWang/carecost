@@ -25,8 +25,6 @@ class CCTextField: UITextField {
         layer.cornerRadius = Theme.CORNER_RADIUS
         layer.borderColor = Theme.BUTTON_BACKGROUND_COLOR!.cgColor
         clipsToBounds = true
-
-        
     }
     
     required init?(coder: NSCoder) {

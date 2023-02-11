@@ -95,17 +95,6 @@ class WelcomeViewController: UIViewController {
         nameTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         nameTextField.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
-        /*
-        nameTextField.placeholder = "Name (optional)"
-        nameTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: Theme.BUTTON_PADDING, height: nameTextField.frame.height))
-        nameTextField.leftViewMode = .always
-        nameTextField.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
-        nameTextField.layer.borderWidth = 3
-        nameTextField.layer.cornerRadius = Theme.CORNER_RADIUS
-        nameTextField.layer.borderColor = Theme.BUTTON_BACKGROUND_COLOR!.cgColor
-        nameTextField.clipsToBounds = true
-         */
-        
         nameTextField.addTarget(self, action: #selector(nameFieldEdited), for: .editingChanged)
         
     }
@@ -117,10 +106,10 @@ class WelcomeViewController: UIViewController {
         startButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         startButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20).isActive = true
         
-        let mySelectedAttributedTitle = NSAttributedString(string: "Start!",
+        let startTitle = NSAttributedString(string: "Start!",
                                                            attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: Theme.BUTTON_FONT_SIZE)!,
                                                                         NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR!])
-        startButton.setAttributedTitle(mySelectedAttributedTitle, for: .normal)
+        startButton.setAttributedTitle(startTitle, for: .normal)
         startButton.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
         startButton.titleLabel!.textAlignment = .center
         
