@@ -11,7 +11,7 @@ class WelcomeViewController: UIViewController {
     
     
     @IBOutlet weak var welcomeLabel: UILabel!
-    @IBOutlet weak var logoPlaceholder: UILabel!
+    @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var welcomeTextView: UITextView!
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -27,42 +27,63 @@ class WelcomeViewController: UIViewController {
         self.view.backgroundColor = Theme.VIEW_BACKGROUND_COLOR
         
         configureWelcomeLabel()
+        configureAppNameLabel()
         configureWelcomeTextView()
         configureNameTextField()
         configureStartButton()
     }
     
     override func viewDidLayoutSubviews() {
-        print(nameTextField.hasAmbiguousLayout)
-        print(startButton.titleLabel?.frame.width)
-        print(startButton.titleLabel?.frame.height)
+        print(appNameLabel.hasAmbiguousLayout)
+        print(appNameLabel.frame.width)
+        print(appNameLabel.frame.height)
     }
     
     // MARK: Display
     
     private func configureWelcomeLabel() {
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        welcomeLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: Theme.SCREEN_WIDTH / 5).isActive = true
-        welcomeLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -Theme.SCREEN_WIDTH / 5).isActive = true
-        welcomeLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        welcomeLabel.bottomAnchor.constraint(equalTo: logoPlaceholder.topAnchor, constant: -20).isActive = true
+        NSLayoutConstraint.activate([
+            welcomeLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: Theme.SCREEN_WIDTH / 7),
+            welcomeLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -Theme.SCREEN_WIDTH / 7),
+            welcomeLabel.heightAnchor.constraint(equalToConstant: 50),
+            welcomeLabel.bottomAnchor.constraint(equalTo: appNameLabel.topAnchor)
+        ])
         
-        welcomeLabel.textAlignment = .center
+        welcomeLabel.layer.contentsGravity = .center
         welcomeLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 32)
         welcomeLabel.textColor = Theme.DEFAULT_TEXT_COLOR
     }
     
+    private func configureAppNameLabel() {
+        appNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            appNameLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: Theme.SCREEN_HEIGHT / 5),
+            appNameLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -Theme.SCREEN_HEIGHT * 7 / 10),
+            appNameLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: Theme.SCREEN_WIDTH / 7),
+            appNameLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -Theme.SCREEN_WIDTH / 7)
+        ])
+        
+        appNameLabel.layer.contentsGravity = .center
+        appNameLabel.attributedText = NSAttributedString(string: "CareCost",
+                                                         attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 32)!,
+                                                                      NSAttributedString.Key.underlineStyle : NSUnderlineStyle.thick.rawValue,
+                                                                      NSAttributedString.Key.strokeWidth : -2])
+    }
+    
     private func configureWelcomeTextView() {
         welcomeTextView.translatesAutoresizingMaskIntoConstraints = false
-        welcomeTextView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: Theme.SCREEN_WIDTH / 7).isActive = true
-        welcomeTextView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -Theme.SCREEN_WIDTH / 7).isActive = true
-        welcomeTextView.bottomAnchor.constraint(equalTo: nameTextField.topAnchor, constant: -20).isActive = true
-        welcomeTextView.topAnchor.constraint(equalTo: logoPlaceholder.bottomAnchor, constant: 20).isActive = true
+        NSLayoutConstraint.activate([
+            welcomeTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Theme.SCREEN_WIDTH / 7),
+            welcomeTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Theme.SCREEN_WIDTH / 7),
+            welcomeTextView.bottomAnchor.constraint(equalTo: nameTextField.topAnchor, constant: -20),
+            welcomeTextView.topAnchor.constraint(equalTo: appNameLabel.bottomAnchor, constant: 20)
+        ])
         
         welcomeTextView.isUserInteractionEnabled = false
         welcomeTextView.font = UIFont(name: Theme.DEFAULT_FONT, size: 22)
         welcomeTextView.backgroundColor = UIColor(hex: "#00000000")
-        welcomeTextView.textAlignment = .center
+        welcomeTextView.layer.contentsGravity = .center
         welcomeTextView.textColor = Theme.DEFAULT_TEXT_COLOR
     }
     
@@ -82,7 +103,7 @@ class WelcomeViewController: UIViewController {
         nameTextField.layer.borderColor = Theme.BUTTON_BACKGROUND_COLOR!.cgColor
         nameTextField.clipsToBounds = true
         nameTextField.addTarget(self, action: #selector(nameFieldEdited), for: .editingChanged)
-
+        
     }
     
     private func configureStartButton() {
@@ -91,14 +112,14 @@ class WelcomeViewController: UIViewController {
         startButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -Theme.SCREEN_WIDTH / 3).isActive = true
         startButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         startButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20).isActive = true
-                
+        
         let mySelectedAttributedTitle = NSAttributedString(string: "Start!",
                                                            attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: Theme.BUTTON_FONT_SIZE)!,
                                                                         NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR!])
         startButton.setAttributedTitle(mySelectedAttributedTitle, for: .normal)
         startButton.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
         startButton.titleLabel!.textAlignment = .center
-
+        
         startButton.layer.cornerRadius = Theme.CORNER_RADIUS
         startButton.addTarget(self, action: #selector(toInputVC), for: .touchUpInside)
     }
