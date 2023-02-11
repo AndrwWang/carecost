@@ -249,7 +249,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         ])
         
         stateTextField.textAlignment = .center
-        stateTextField.font = UIFont(name: Theme.DEFAULT_FONT, size: 12a)
+        stateTextField.font = UIFont(name: Theme.DEFAULT_FONT, size: 12)
         
         stateLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
