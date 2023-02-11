@@ -133,8 +133,10 @@ class WelcomeViewController: UIViewController {
     @objc func toInputVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "InputViewController")
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+        //vc.modalPresentationStyle = .fullScreen
+        //self.present(vc, animated: true)
+        print("hi")
+        navigationController!.pushViewController(vc, animated: true)
     }
 }
 
