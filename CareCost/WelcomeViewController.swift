@@ -7,11 +7,12 @@
 
 import UIKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var welcomeTextView: UITextView!
+    
     
     //@IBOutlet weak var nameTextField: UITextField!
     private var nameTextField: CCTextField!
@@ -21,6 +22,7 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         Theme.SCREEN_WIDTH = self.view.frame.width
         Theme.SCREEN_HEIGHT = self.view.frame.height
@@ -32,10 +34,38 @@ class WelcomeViewController: UIViewController {
         configureWelcomeTextView()
         configureStartButton()
         
-        UIView.animate(withDuration: 14, animations: {
-            self.logoView.frame.origin.y -= 1000
-        }, completion: nil)
+        self.nameTextField.delegate = self
+        
+//        UIView.animate(withDuration: 14, animations: {
+//            self.logoView.frame.origin.y -= 1000
+//        }, completion: nil)
+        
+        animateLogo()
+        
     }
+
+    func animateLogo() {
+        let originalFrame = self.logoView.frame
+        self.logoView.alpha = 0
+        UIView.animate(withDuration: 3, animations: {
+            self.logoView.alpha = 1
+        }, completion: { (finished) in
+            if finished {
+                UIView.animate(withDuration: 20, animations: {
+                    self.logoView.frame.origin.y -= 1000
+                }, completion: { (finished) in
+                    if finished {
+                        self.logoView.frame = originalFrame
+                        self.animateLogo()
+                    }
+                })
+            }
+        })
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return false
+        }
     
     // MARK: Display
     

@@ -55,10 +55,32 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         configureState()
         configureSubmit()
         
-        UIView.animate(withDuration: 15, animations: {
-            self.logoView.frame.origin.y -= 1000
-        }, completion: nil)
+        animateLogo()
     }
+    
+    func animateLogo() {
+        let originalFrame = self.logoView.frame
+        self.logoView.alpha = 0
+        UIView.animate(withDuration: 3, animations: {
+            self.logoView.alpha = 1
+        }, completion: { (finished) in
+            if finished {
+                UIView.animate(withDuration: 30, animations: {
+                    self.logoView.frame.origin.y -= 1000
+                }, completion: { (finished) in
+                    if finished {
+                        self.logoView.frame = originalFrame
+                        self.animateLogo()
+                    }
+                })
+            }
+        })
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return false
+        }
     
     // MARK: Display
     
