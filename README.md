@@ -28,6 +28,11 @@ The app itself contains four main screens, each serving a distinct purpose. Afte
 
 Given that this hackathon revolved around data science, our group's main challenge was figuring out how to create a project that could positively impact individual users. After trying to brainstorm without guidance, we found that browsing online data sources helped us tremendously in coming up with ideas. Our next biggest challenge was integrating Charts into our app. Although we realized how powerful it was, none of us had much experience working with tools outside of the built-in ones. From reading the documentation to making numerous tests, our team gained lots of insight into the possibilities and struggles of third-party software.
 
+## Vision for CostCare
+
+We hope that by giving users a quick and convenient way to understand their upcoming healthcare costs, they will be encouraged to make responsible fiscal decisions and plan ahead. Medical expenses probably are the most important costs in life and being aware of how to save money for this is crucial. When people can not pay the out-of-pocket costs they can become drowned in debt and will be discouraged to seek medical help in the future, putting their own health at risk. 
+
+
 ## Closing Thoughts
 
-Regardless of how we place, Hacklytics 2023 and CareCost has inspired us as developers, learners, and community members. After discovering the vast amounts of data that come from all over the world, we now understand the impact that data science has on future generations of technology, just like the endless array of constellations in the night sky...
+Regardless of how we place, Hacklytics 2023 and CareCost has inspired us as developers, learners, and community members. After discovering the vast amounts of data that come from all over the world, we now understand the impact that data science has on future generations of technology. 
