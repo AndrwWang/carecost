@@ -33,6 +33,8 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var yearSlider: UISlider!
     @IBOutlet weak var yearLabel: UILabel!
     
+    private var researchButton: UIButton!
+    
     //default values for now
     private var age: Int = 18
     private var sex: String = "male"
@@ -49,7 +51,7 @@ class GraphViewController: UIViewController {
         configureResultLabel()
         configureChart()
         configureSlider()
-        
+        configureResearchButton()
         animateLogo()
     }
     
@@ -135,7 +137,7 @@ class GraphViewController: UIViewController {
         chartView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             chartView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
-            chartView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor),
+            chartView.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 10),
             chartView.widthAnchor.constraint(equalToConstant: Theme.SCREEN_WIDTH * 5 / 6),
             chartView.heightAnchor.constraint(equalTo: chartView.widthAnchor)
         ])
@@ -164,6 +166,27 @@ class GraphViewController: UIViewController {
         setChartData()
     }
     
+    private func configureResearchButton() {
+        researchButton = UIButton()
+        self.view.addSubview(researchButton)
+        
+        researchButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            researchButton.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 6),
+            researchButton.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 6),
+            researchButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -Theme.SCREEN_HEIGHT / 7),
+            researchButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        let researchTitle = NSAttributedString(string: "How can I save up?",
+                                                           attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: Theme.BUTTON_FONT_SIZE)!,
+                                                                        NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR!])
+        researchButton.setAttributedTitle(researchTitle, for: .normal)
+        researchButton.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
+        researchButton.titleLabel!.textAlignment = .center
+        researchButton.layer.cornerRadius = Theme.CORNER_RADIUS
+        researchButton.addTarget(self, action: #selector(researchClicked), for: .touchUpInside)
+    }
     // MARK: Helper
     
     private func calcCharge(_ currAge: Int) -> Double {
@@ -195,6 +218,13 @@ class GraphViewController: UIViewController {
     }
     
     // MARK: Actions
+    
+    @objc func researchClicked() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "InformationViewController")
+
+        navigationController!.pushViewController(vc, animated: true)
+    }
     
     @objc func sliderValueChanged() {
         sliderValue = Int(yearSlider.value.rounded())

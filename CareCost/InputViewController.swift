@@ -314,6 +314,8 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     // MARK: Helper
     
     private func shouldEnableSubmitButton() -> Bool {
+        return true //FOR TESTING
+        
         guard let age = Double(ageTextField.text!) else {
             return false
         }
@@ -388,15 +390,15 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
             region = "southeast"
         }
         
-        let age = Int(ageTextField.text!)!
-         let sex = sexTextField.text!
-         let bmi = Double(bmiTextField.text!)!
-         let numberOfChildren = Int(childrenTextField.text!)!
-         let smokerStatus = smokerTextField.text!
+        /*let age = Int(ageTextField.text!)!
+        let sex = sexTextField.text!
+        let bmi = Double(bmiTextField.text!)!
+        let numberOfChildren = Int(childrenTextField.text!)!
+        let smokerStatus = smokerTextField.text!*/
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "GraphViewController") as! GraphViewController
-        vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
+        //vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
         
         navigationController!.pushViewController(vc, animated: true)
     }
