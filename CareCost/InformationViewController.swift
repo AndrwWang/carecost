@@ -22,9 +22,66 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
         //moreInfoLabel = Link(destination: URL(string: "))
         
         configureTitleLabel()
-        //configureInfoTextView()
+        configureSegementedControl()
+        configureInfoTextView()
     }
     
+    //MARK: Display
+    
+    private func configureTitleLabel() {
+        titleLabel.text = "Saving Money for Medical Costs"
+        titleLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 20)
+        titleLabel.textAlignment = .center
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 8),
+            titleLabel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 8)
+        ])
+        
+    }
+    
+    private func configureSegementedControl() {
+        var titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 14)]
+        segControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        titleTextAttributes[.foregroundColor] = UIColor.black
+        segControl.setTitleTextAttributes(titleTextAttributes, for: .selected)
+        segControl.backgroundColor = Theme.BUTTON_BACKGROUND_COLOR
+        segControl.selectedSegmentTintColor = Theme.BUTTON_TEXT_COLOR
+        
+        segControl.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            segControl.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            segControl.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
+        ])
+    }
+    
+    private func configureInfoTextView() {
+        infoTextView.isUserInteractionEnabled = false
+        infoTextView.isScrollEnabled = false
+        infoTextView.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+        infoTextView.layer.cornerRadius = Theme.CORNER_RADIUS
+        infoTextView.backgroundColor = Theme.BUTTON_BACKGROUND_COLOR
+        infoTextView.textColor = .white
+        infoTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+        infoTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            infoTextView.topAnchor.constraint(equalTo: segControl.bottomAnchor, constant: 20),
+            infoTextView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 8),
+            infoTextView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 8)
+        ])
+        
+        infoTextView.text = info[segControl.selectedSegmentIndex]
+    }
+    
+    //MARK: Actions
+    
+    @IBAction func segmentedControl(_ sender: UISegmentedControl) {
+        infoTextView.text = info[sender.selectedSegmentIndex]
+    }
+
     @IBAction func moreInfoButton1(_ sender: UIButton) {
         UIApplication.shared.open(URL(string: "https://www.healthcare.gov")! as URL, options: [:], completionHandler: nil)
     }
@@ -32,32 +89,4 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
     @IBAction func moreInfoButton2(_ sender: UIButton) {
         UIApplication.shared.open(URL(string: "https://medlineplus.gov/")! as URL, options: [:], completionHandler: nil)
     }
-    
-    
-    //MARK: Display
-    
-    private func configureTitleLabel() {
-        titleLabel.text = "Saving Money for Medical Costs"
-        titleLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 20)
-        
-        
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            titleLabel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 6),
-            titleLabel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 6)
-        ])
-        
-    }
-    /*private func configureInfoTextView() {
-        infoTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-        
-        ])
-    }*/
-    
-    @IBAction func segmentedControl(_ sender: UISegmentedControl) {
-        infoTextView.text = info[sender.selectedSegmentIndex]
-    }
-
 }
