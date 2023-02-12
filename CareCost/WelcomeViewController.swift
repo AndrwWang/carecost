@@ -157,7 +157,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     @objc func toInputVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "InputViewController") as! InputViewController
-        vc.setName(name!.split(separator: " ")[0].capitalized)
+        vc.setName(name != nil ? name!.split(separator: " ")[0].capitalized : "")
 
         navigationController!.pushViewController(vc, animated: true)
     }

@@ -113,8 +113,6 @@ class GraphViewController: UIViewController {
         NSLayoutConstraint.activate([
             yearLabel.topAnchor.constraint(equalTo: yearSlider.bottomAnchor, constant: 10),
             yearLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor)
-            //yearLabel.leftAnchor.constraint(equalTo: yearSlider.leftAnchor),
-            //yearLabel.rightAnchor.constraint(equalTo: yearSlider.rightAnchor),
         ])
         
         yearLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
@@ -150,7 +148,7 @@ class GraphViewController: UIViewController {
         chartView.backgroundColor = Theme.BUTTON_BACKGROUND_COLOR
         chartView.layer.cornerRadius = Theme.CORNER_RADIUS
         chartView.layer.masksToBounds = true
-        chartView.minOffset = 30
+        chartView.minOffset = 50
         let graphFont = UIFont(name: Theme.DEFAULT_FONT, size: 12)!
         
         
@@ -169,6 +167,19 @@ class GraphViewController: UIViewController {
         chartView.rightAxis.drawLabelsEnabled = false
         
         setChartData()
+        
+        //add x-axis age label
+        var ageLabel = UILabel()
+        ageLabel.text = "Age"
+        ageLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 12)
+        ageLabel.textColor = Theme.BUTTON_TEXT_COLOR
+        self.view.addSubview(ageLabel)
+        
+        ageLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            ageLabel.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: -25),
+            ageLabel.centerXAnchor.constraint(equalTo: chartView.centerXAnchor)
+        ])
     }
     
     private func configureResearchButton() {
