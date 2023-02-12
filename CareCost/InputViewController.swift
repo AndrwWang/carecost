@@ -286,12 +286,42 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         
         submitButton.layer.cornerRadius = Theme.CORNER_RADIUS
         submitButton.addTarget(self, action: #selector(submitClicked), for: .touchUpInside)
+        submitButton.isEnabled = shouldEnableSubmitButton()
+    }
+    
+    // MARK: Helper
+    
+    private func shouldEnableSubmitButton() -> Bool {
+        guard let age = Double(ageTextField.text!) else {
+            return false
+        }
+        guard let sex = sexTextField.text else {
+            return false
+        }
+        guard let numChildren = Int(childrenTextField.text!) else {
+            return false
+        }
+        guard let bmi = Double(bmiTextField.text!) else {
+            return false
+        }
+        guard let smoker = smokerTextField.text else {
+            return false
+        }
+        guard let state = stateTextField.text else {
+            return false
+        }
+        
+        return age >= 0 && !sex.isEmpty && numChildren >= 0 && bmi >= 0 && !smoker.isEmpty && !state.isEmpty
     }
     
     // MARK: Actions
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        submitButton.isEnabled = shouldEnableSubmitButton()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -336,15 +366,15 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
             region = "southeast"
         }
         
-        /*let age = Int(ageTextField.text!)!
+        let age = Int(ageTextField.text!)!
          let sex = sexTextField.text!
          let bmi = Double(bmiTextField.text!)!
          let numberOfChildren = Int(childrenTextField.text!)!
-         let smokerStatus = smokerTextField.text!*/
+         let smokerStatus = smokerTextField.text!
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "GraphViewController") as! GraphViewController
-        //vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
+        vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
         
         navigationController!.pushViewController(vc, animated: true)
     }
@@ -360,8 +390,8 @@ extension InputViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             return 1
         }
         return 0
-        
     }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (pickerView.tag == 1) {
             return sexes.count
@@ -372,6 +402,7 @@ extension InputViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
         return 0
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if (pickerView.tag == 1) {
             return sexes[row]
@@ -381,7 +412,6 @@ extension InputViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             return states[row]
         }
         return ""
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -396,6 +426,8 @@ extension InputViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             stateTextField.text = states[row]
             stateTextField.resignFirstResponder()
         }
+        
+        submitButton.isEnabled = shouldEnableSubmitButton()
     }
 }
 
