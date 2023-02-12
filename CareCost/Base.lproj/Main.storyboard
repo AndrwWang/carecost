@@ -235,7 +235,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CareCost Logo" translatesAutoresizingMaskIntoConstraints="NO" id="1iI-FH-dAc">
-                                <rect key="frame" x="-290" y="724" width="683" height="363"/>
+                                <rect key="frame" x="-290" y="716" width="683" height="363"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
