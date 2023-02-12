@@ -96,7 +96,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         appNameLabel.attributedText = NSAttributedString(string: "CareCost",
                                                          attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 32)!,
                                                                       NSAttributedString.Key.strokeWidth : -2,
-                                                                      NSAttributedString.Key.foregroundColor : UIColor.white])
+                                                                      NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR])
     }
     
     private func configureWelcomeTextView() {
