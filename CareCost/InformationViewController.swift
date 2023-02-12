@@ -25,9 +25,10 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.view.backgroundColor = Theme.VIEW_BACKGROUND_COLOR
+        navigationItem.leftBarButtonItem = CCBarButtonItem(selector: #selector(goBack), target: self)
+        
         infoTextView.text = "Click the buttons above to learn more!"
     
-        
         configureTitleLabel()
         configureSegementedControl()
         configureInfoTextView()
@@ -65,7 +66,7 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
             titleLabel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 8),
             titleLabel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 8)
         ])
@@ -108,7 +109,7 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
     
     private func configureSourceInfo() {
         sourceLabel = UILabel()
-        sourceLabel.text = "Sources & More Info:"
+        sourceLabel.text = "Sources & More Info"
         sourceLabel.textAlignment = .center
         sourceLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
         self.view.addSubview(sourceLabel)
@@ -116,14 +117,14 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
         sourceLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             sourceLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
-            sourceLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -Theme.SCREEN_HEIGHT / 5.5),
+            sourceLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -Theme.SCREEN_HEIGHT / 6.5),
             sourceLabel.heightAnchor.constraint(equalToConstant: Theme.BUTTON_FONT_SIZE)
         ])
         
         sourceButton1.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             sourceButton1.rightAnchor.constraint(equalTo: sourceLabel.centerXAnchor, constant: -5),
-            sourceButton1.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 10),
+            sourceButton1.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 5),
             sourceButton1.heightAnchor.constraint(equalToConstant: 25),
             sourceButton1.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 6)
         ])
@@ -183,6 +184,10 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Actions
+    
+    @objc func goBack() {
+        navigationController!.popViewController(animated: true)
+    }
     
     @objc func startOverClicked() {
         navigationController!.popToRootViewController(animated: true)

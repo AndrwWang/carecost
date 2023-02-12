@@ -45,6 +45,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         super.viewDidLoad()
         
         self.view.backgroundColor = Theme.VIEW_BACKGROUND_COLOR
+        navigationItem.leftBarButtonItem = CCBarButtonItem(selector: #selector(goBack), target: self)
         
         configureTitleLabel()
         configurePrivacyLabel()
@@ -97,7 +98,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
             titleLabel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 7),
             titleLabel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 7)
         ])
@@ -322,10 +323,8 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     }
     
     // MARK: Helper
-    
-    private func shouldEnableSubmitButton() -> Bool {
-        return true //FOR TESTING
-        
+
+    private func shouldEnableSubmitButton() -> Bool {        
         guard let age = Double(ageTextField.text!) else {
             return false
         }
@@ -349,6 +348,10 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     }
     
     // MARK: Actions
+    
+    @objc func goBack() {
+        navigationController!.popViewController(animated: true)
+    }
     
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
@@ -400,15 +403,15 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
             region = "southeast"
         }
         
-        /*let age = Int(ageTextField.text!)!
+        let age = Int(ageTextField.text!)!
         let sex = sexTextField.text!
         let bmi = Double(bmiTextField.text!)!
         let numberOfChildren = Int(childrenTextField.text!)!
-        let smokerStatus = smokerTextField.text!*/
+        let smokerStatus = smokerTextField.text!
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "GraphViewController") as! GraphViewController
-        //vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
+        vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
         vc.setName(name)
         navigationController!.pushViewController(vc, animated: true)
     }

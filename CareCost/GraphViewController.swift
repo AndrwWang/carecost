@@ -48,6 +48,7 @@ class GraphViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = Theme.VIEW_BACKGROUND_COLOR
+        navigationItem.leftBarButtonItem = CCBarButtonItem(selector: #selector(goBack), target: self)
         
         configureResultLabel()
         configureChart()
@@ -86,7 +87,7 @@ class GraphViewController: UIViewController {
         NSLayoutConstraint.activate([
             resultLabel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 5),
             resultLabel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 5),
-            resultLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
+            resultLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10)
         ])
         
         resultLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 32)
@@ -239,6 +240,10 @@ class GraphViewController: UIViewController {
     }
     
     // MARK: Actions
+    
+    @objc func goBack() {
+        navigationController!.popViewController(animated: true)
+    }
     
     @objc func researchClicked() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
