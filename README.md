@@ -1,6 +1,6 @@
 # CareCost - healthcare expenses made simpler
 
-For Hacklytics 2023 @ Georgia Tech, our team created CareCost, a mobile iOS application that forecasts a user's out-of-pocket healthcare expenses based on a variety of metrics. Authors: Frank Gao & Andrew Wang
+For Hacklytics 2023 @ Georgia Tech, our team created CareCost, a mobile iOS application that uses machine learning to forecast a user's out-of-pocket healthcare expenses based on a variety of metrics. Authors: Frank Gao & Andrew Wang
 
 ## The Inspiration
 
@@ -30,9 +30,9 @@ Given that this hackathon revolved around data science, our group's main challen
 
 ## Vision for CostCare
 
-We hope that by giving users a quick and convenient way to understand their upcoming healthcare costs, they will be encouraged to make responsible fiscal decisions and plan ahead. Medical expenses probably are the most important costs in life and being aware of how to save money for this is crucial. When people can not pay the out-of-pocket costs they can become drowned in debt and will be discouraged to seek medical help in the future, putting their own health at risk. 
+We hope that by giving users a quick and convenient way to understand their upcoming healthcare costs, they will be encouraged to make responsible fiscal decisions and plan ahead. Medical expenses probably are the most important costs in life and being aware of how to save money for this is crucial. When people can not pay the out-of-pocket costs, they can become drowned in debt and will be discouraged to seek medical help in the future, putting their own health at risk. 
 
 
 ## Closing Thoughts
 
-Regardless of how we place, Hacklytics 2023 and CareCost has inspired us as developers, learners, and community members. After discovering the vast amounts of data that come from all over the world, we now understand the impact that data science has on future generations of technology. 
+Regardless of how we place, Hacklytics 2023 and CareCost has inspired us as developers, learners, and community members. After utilizing datasets to create a tool that could benefit people's lives, we understand better the impact that data science has on the world.  
