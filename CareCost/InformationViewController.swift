@@ -14,6 +14,12 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var segControl: UISegmentedControl!
     @IBOutlet weak var infoTextView: UITextView!
     
+    private var sourceLabel: UILabel!
+    @IBOutlet weak var sourceButton1: UIButton!
+    @IBOutlet weak var sourceButton2: UIButton!
+
+    private var startOverButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +30,8 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
         configureTitleLabel()
         configureSegementedControl()
         configureInfoTextView()
+        configureSourceInfo()
+        configureStartOver()
     }
     
     //MARK: Display
@@ -76,7 +84,87 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
         infoTextView.text = info[segControl.selectedSegmentIndex]
     }
     
+    private func configureSourceInfo() {
+        sourceLabel = UILabel()
+        sourceLabel.text = "Sources & More Info:"
+        sourceLabel.textAlignment = .center
+        sourceLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+        self.view.addSubview(sourceLabel)
+        
+        sourceLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sourceLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            sourceLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -Theme.SCREEN_HEIGHT / 5.5),
+            sourceLabel.heightAnchor.constraint(equalToConstant: Theme.BUTTON_FONT_SIZE)
+        ])
+        
+        sourceButton1.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sourceButton1.rightAnchor.constraint(equalTo: sourceLabel.centerXAnchor, constant: -5),
+            sourceButton1.topAnchor.constraint(equalTo: sourceLabel.bottomAnchor, constant: 10),
+            sourceButton1.heightAnchor.constraint(equalToConstant: 25),
+            sourceButton1.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 6)
+        ])
+        
+        var attributedText = NSAttributedString(string: "healthcare.gov",
+                                                           attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: Theme.BUTTON_FONT_SIZE / 2)!,
+                                                                        NSAttributedString.Key.foregroundColor : UIColor.white,
+                                                                        NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue])
+        sourceButton1.setAttributedTitle(attributedText, for: .normal)
+        sourceButton1.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
+        sourceButton1.titleLabel!.textAlignment = .center
+        sourceButton1.layer.cornerRadius = Theme.CORNER_RADIUS / 2
+        sourceButton1.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+        sourceButton2.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sourceButton2.leftAnchor.constraint(equalTo: sourceButton1.rightAnchor, constant: 10),
+            sourceButton2.bottomAnchor.constraint(equalTo: sourceButton1.bottomAnchor),
+            sourceButton2.topAnchor.constraint(equalTo: sourceButton1.topAnchor),
+            sourceButton2.widthAnchor.constraint(equalTo: sourceButton1.widthAnchor)
+        ])
+        
+        attributedText = NSAttributedString(string: "medlineplus.gov",
+                                                           attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: Theme.BUTTON_FONT_SIZE / 2)!,
+                                                                        NSAttributedString.Key.foregroundColor : UIColor.white,
+                                                                        NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue])
+        sourceButton2.setAttributedTitle(attributedText, for: .normal)
+        sourceButton2.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
+        sourceButton2.titleLabel!.textAlignment = .center
+        sourceButton2.layer.cornerRadius = Theme.CORNER_RADIUS / 2
+        sourceButton2.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        
+       
+    }
+    
+    private func configureStartOver() {
+        startOverButton = UIButton()
+        self.view.addSubview(startOverButton)
+        
+        startOverButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            startOverButton.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 4),
+            startOverButton.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 4),
+            startOverButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            startOverButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        let btnTitle = NSAttributedString(string: "Start Over",
+                                                           attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: Theme.BUTTON_FONT_SIZE)!,
+                                                                        NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR])
+        startOverButton.setAttributedTitle(btnTitle, for: .normal)
+        startOverButton.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
+        startOverButton.titleLabel!.textAlignment = .center
+        startOverButton.layer.cornerRadius = Theme.CORNER_RADIUS
+        
+        startOverButton.addTarget(self, action: #selector(startOverClicked), for: .touchUpInside)
+    }
+    
     //MARK: Actions
+    
+    @objc func startOverClicked() {
+        navigationController!.popToRootViewController(animated: true)
+    }
     
     @IBAction func segmentedControl(_ sender: UISegmentedControl) {
         infoTextView.text = info[sender.selectedSegmentIndex]

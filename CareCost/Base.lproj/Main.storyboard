@@ -281,20 +281,36 @@
                                     <action selector="segmentedControl:" destination="THP-G2-WrV" eventType="valueChanged" id="rQT-fM-XfR"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AlV-vc-7dD">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AlV-vc-7dD">
                                 <rect key="frame" x="122" y="670" width="149" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="MedlinePlus.gov"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="MedlinePlus.gov">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="moreInfoButton2:" destination="THP-G2-WrV" eventType="touchUpInside" id="ib1-fq-yDV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWU-Kb-1YZ">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DWU-Kb-1YZ">
                                 <rect key="frame" x="126" y="616" width="142" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="HealthCare.gov"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="HealthCare.gov">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="moreInfoButton1:" destination="THP-G2-WrV" eventType="touchUpInside" id="TNN-By-bZE"/>
                                 </connections>
@@ -314,8 +330,9 @@
                     </view>
                     <connections>
                         <outlet property="infoTextView" destination="dPn-Xf-HIy" id="iZc-OR-Bni"/>
-                        <outlet property="moreInfoLabel" destination="aB5-Rb-6EI" id="pXw-wN-72l"/>
                         <outlet property="segControl" destination="TTf-75-3d5" id="lNw-zX-yAV"/>
+                        <outlet property="sourceButton1" destination="DWU-Kb-1YZ" id="EHf-jx-bG4"/>
+                        <outlet property="sourceButton2" destination="AlV-vc-7dD" id="3VH-DJ-7Jo"/>
                         <outlet property="titleLabel" destination="h6h-93-dHd" id="7BO-JX-WgK"/>
                     </connections>
                 </viewController>
