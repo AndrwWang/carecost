@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InputViewController: UIViewController, UITextFieldDelegate {
+class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
     @IBOutlet weak var logoView: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -107,7 +107,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
             ageLabel.rightAnchor.constraint(equalTo: ageTextField.leftAnchor, constant: -labelTextFieldPadding),
             ageLabel.topAnchor.constraint(equalTo: ageTextField.topAnchor),
             ageLabel.bottomAnchor.constraint(equalTo: ageTextField.bottomAnchor)
-                                                
+            
         ])
         
         ageLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
@@ -131,7 +131,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
             sexLabel.rightAnchor.constraint(equalTo: sexTextField.leftAnchor, constant: -labelTextFieldPadding),
             sexLabel.topAnchor.constraint(equalTo: sexTextField.topAnchor),
             sexLabel.bottomAnchor.constraint(equalTo: sexTextField.bottomAnchor)
-                                                
+            
         ])
         
         sexLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
@@ -162,7 +162,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
             childrenLabel.rightAnchor.constraint(equalTo: childrenTextField.leftAnchor, constant: -labelTextFieldPadding),
             childrenLabel.topAnchor.constraint(equalTo: childrenTextField.topAnchor),
             childrenLabel.bottomAnchor.constraint(equalTo: childrenTextField.bottomAnchor)
-                                                
+            
         ])
         
         childrenLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
@@ -200,8 +200,8 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         ])
         
         let bmiButtonTitle = NSAttributedString(string: "What is my BMI?",
-                                                           attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 12)!,
-                                                                        NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR!])
+                                                attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 12)!,
+                                                             NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR!])
         bmiButton.setAttributedTitle(bmiButtonTitle, for: .normal)
         
         bmiButton.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
@@ -230,7 +230,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
             smokerLabel.rightAnchor.constraint(equalTo: smokerTextField.leftAnchor, constant: -labelTextFieldPadding),
             smokerLabel.topAnchor.constraint(equalTo: smokerTextField.topAnchor),
             smokerLabel.bottomAnchor.constraint(equalTo: smokerTextField.bottomAnchor)
-                                                
+            
         ])
         
         smokerLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
@@ -261,7 +261,7 @@ class InputViewController: UIViewController, UITextFieldDelegate {
             stateLabel.rightAnchor.constraint(equalTo: stateTextField.leftAnchor, constant: -labelTextFieldPadding),
             stateLabel.topAnchor.constraint(equalTo: stateTextField.topAnchor),
             stateLabel.bottomAnchor.constraint(equalTo: stateTextField.bottomAnchor)
-                                                
+            
         ])
         
         stateLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
@@ -281,8 +281,8 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         submitButton.topAnchor.constraint(equalTo: stateTextField.bottomAnchor, constant: 40).isActive = true
         
         let startTitle = NSAttributedString(string: "Submit!",
-                                                           attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: Theme.BUTTON_FONT_SIZE)!,
-                                                                        NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR!])
+                                            attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: Theme.BUTTON_FONT_SIZE)!,
+                                                         NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR!])
         submitButton.setAttributedTitle(startTitle, for: .normal)
         submitButton.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
         submitButton.titleLabel!.textAlignment = .center
@@ -293,6 +293,10 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Actions
     
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let digits = "1234567890."
         let digitSet = CharacterSet(charactersIn: digits)
@@ -302,8 +306,18 @@ class InputViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func bmiClicked() {
-        
-        
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier:"BMICalculatorViewController") {
+            vc.modalTransitionStyle   = .coverVertical
+            vc.modalPresentationStyle = .popover
+            vc.popoverPresentationController?.sourceView = self.view
+            vc.popoverPresentationController?.sourceRect =
+            CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            vc.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue:0)
+            vc.popoverPresentationController?.delegate = self
+            
+            vc.preferredContentSize = CGSize(width: Theme.SCREEN_WIDTH * 3 / 4, height: Theme.SCREEN_HEIGHT / 3)
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     @objc func submitClicked() {
@@ -323,15 +337,15 @@ class InputViewController: UIViewController, UITextFieldDelegate {
         }
         
         /*let age = Int(ageTextField.text!)!
-        let sex = sexTextField.text!
-        let bmi = Double(bmiTextField.text!)!
-        let numberOfChildren = Int(childrenTextField.text!)!
-        let smokerStatus = smokerTextField.text!*/
+         let sex = sexTextField.text!
+         let bmi = Double(bmiTextField.text!)!
+         let numberOfChildren = Int(childrenTextField.text!)!
+         let smokerStatus = smokerTextField.text!*/
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "GraphViewController") as! GraphViewController
         //vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
-
+        
         navigationController!.pushViewController(vc, animated: true)
     }
 }

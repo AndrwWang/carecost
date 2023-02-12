@@ -72,6 +72,9 @@ class GraphViewController: UIViewController {
             yearSlider.topAnchor.constraint(equalTo: chartView.bottomAnchor, constant: 10)
         ])
         
+        yearSlider.thumbTintColor = Theme.BUTTON_BACKGROUND_COLOR
+        yearSlider.minimumTrackTintColor = Theme.BUTTON_BACKGROUND_COLOR
+        yearSlider.maximumTrackTintColor = Theme.BUTTON_TEXT_COLOR
         yearSlider.minimumValue = 1
         yearSlider.maximumValue = 10
         yearSlider.value = Float(sliderValue)

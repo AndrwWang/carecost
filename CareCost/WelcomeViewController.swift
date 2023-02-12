@@ -37,12 +37,6 @@ class WelcomeViewController: UIViewController {
         }, completion: nil)
     }
     
-    override func viewDidLayoutSubviews() {
-        print(nameTextField.hasAmbiguousLayout)
-        print(appNameLabel.frame.width)
-        print(appNameLabel.frame.height)
-    }
-    
     // MARK: Display
     
     private func configureWelcomeLabel() {
