@@ -22,7 +22,7 @@ class CCTextField: UITextField {
         
         borderStyle = .roundedRect
         layer.borderWidth = 3
-        layer.cornerRadius = Theme.CORNER_RADIUS
+        layer.cornerRadius = Theme.CORNER_RADIUS * 2 / 3
         layer.borderColor = borderColor.cgColor
         clipsToBounds = true
     }

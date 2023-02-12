@@ -192,8 +192,8 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         NSLayoutConstraint.activate([
             bmiButton.leftAnchor.constraint(equalTo: bmiTextField.rightAnchor, constant: Theme.LABEL_TEXTFIELD_PADDING),
             bmiButton.widthAnchor.constraint(equalToConstant: Theme.SCREEN_WIDTH * 3 / 10),
-            bmiButton.topAnchor.constraint(equalTo: bmiTextField.topAnchor),
-            bmiButton.bottomAnchor.constraint(equalTo: bmiTextField.bottomAnchor)
+            bmiButton.topAnchor.constraint(equalTo: bmiTextField.topAnchor, constant: 5),
+            bmiButton.bottomAnchor.constraint(equalTo: bmiTextField.bottomAnchor, constant: -5)
         ])
         
         let bmiButtonTitle = NSAttributedString(string: "What is my BMI?",
@@ -204,7 +204,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         bmiButton.setBackgroundColor(color: Theme.BUTTON_BACKGROUND_COLOR!, forState: .normal)
         bmiButton.titleLabel!.textAlignment = .center
         
-        bmiButton.layer.cornerRadius = Theme.CORNER_RADIUS
+        bmiButton.layer.cornerRadius = Theme.CORNER_RADIUS * 2 / 3
         bmiButton.addTarget(self, action: #selector(bmiClicked), for: .touchUpInside)
     }
     

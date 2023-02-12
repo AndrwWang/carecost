@@ -42,6 +42,7 @@ class BMICalculatorViewController: UIViewController {
         configureTitleLabel()
         configureWeight()
         configureHeight()
+        configureCalculateButton()
     }
 
     private func configureTitleLabel() {
@@ -169,6 +170,28 @@ class BMICalculatorViewController: UIViewController {
             inchesLabel.leftAnchor.constraint(equalTo: inchesField.leftAnchor),
             inchesLabel.rightAnchor.constraint(equalTo: inchesField.rightAnchor)
         ])
+    }
+    
+    private func configureCalculateButton() {
+        calculateButton = UIButton()
+        self.view.addSubview(calculateButton)
+        
+        calculateButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            calculateButton.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: vcWidth / 3),
+            calculateButton.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -vcWidth / 3),
+            calculateButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -vcHeight / 10),
+            calculateButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        
+        let calculateTitle = NSAttributedString(string: "Calculate",
+                                                attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: Theme.BUTTON_FONT_SIZE * 2 / 3)!,
+                                                                        NSAttributedString.Key.foregroundColor : Theme.BUTTON_BACKGROUND_COLOR!])
+        calculateButton.setAttributedTitle(calculateTitle, for: .normal)
+        calculateButton.setBackgroundColor(color: Theme.BUTTON_TEXT_COLOR!, forState: .normal)
+        calculateButton.titleLabel!.textAlignment = .center
+        
+        calculateButton.layer.cornerRadius = Theme.CORNER_RADIUS / 2
     }
 }
 
