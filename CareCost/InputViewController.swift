@@ -8,6 +8,8 @@
 import UIKit
 
 class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
+    private var name: String = ""
+    
     @IBOutlet weak var logoView: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -58,6 +60,10 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         animateLogo()
     }
     
+    func setName(_ name: String) {
+        self.name = name
+    }
+    
     func animateLogo() {
         let originalFrame = self.logoView.frame
         self.logoView.alpha = 0
@@ -85,6 +91,10 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     // MARK: Display
     
     private func configureTitleLabel() {
+        if !name.isEmpty {
+            titleLabel.text = "Hi " + name + ", " + titleLabel.text!
+        }
+        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -399,7 +409,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "GraphViewController") as! GraphViewController
         //vc.setMetrics(age: age, sex: sex.lowercased(), numOfChildren: numberOfChildren, bmi: bmi, smoker: smokerStatus.lowercased(), region: region.lowercased())
-        
+        vc.setName(name)
         navigationController!.pushViewController(vc, animated: true)
     }
 }

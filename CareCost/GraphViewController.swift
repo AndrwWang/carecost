@@ -9,6 +9,7 @@ import UIKit
 import Charts
 
 class GraphViewController: UIViewController {
+    private var name: String = ""
     private let regression = [
         "age" : 256.8563525373484,
         "male" : -65.65717969755242,
@@ -77,6 +78,10 @@ class GraphViewController: UIViewController {
     // MARK: Display
     
     private func configureResultLabel() {
+        if !name.isEmpty {
+            resultLabel.text = name + ", t" + Array(resultLabel.text!)[1...]
+        }
+        
         resultLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             resultLabel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 5),
@@ -187,7 +192,12 @@ class GraphViewController: UIViewController {
         researchButton.layer.cornerRadius = Theme.CORNER_RADIUS
         researchButton.addTarget(self, action: #selector(researchClicked), for: .touchUpInside)
     }
+    
     // MARK: Helper
+    
+    func setName(_ name: String) {
+        self.name = name
+    }
     
     private func calcCharge(_ currAge: Int) -> Double {
         let ageCalc = Double(currAge) * regression["age"]!
