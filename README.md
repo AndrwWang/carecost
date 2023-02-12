@@ -18,7 +18,7 @@ From the dataset, we created a regression model using Python. The pandas and skl
 
 ## The App
 
-[App Demo Video](https://youtu.be/JYlhY2unmWk)
+[App Demo Video](https://drive.google.com/file/d/1xh0ovouedBrqT030aVysNWF5OVIerT9n/view?usp=share_link)
 
 The CareCost app was built entirely in Xcode using Apple's Swift language. Due to its flexibility as well as robust layout tools, we could easily fix GUI issues as they came up. Additionally, we utilized a powerful third-party library, [Charts](https://github.com/danielgindi/Charts), to help the user visualize our model's predictions.
 
