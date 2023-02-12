@@ -40,7 +40,7 @@ class BMICalculatorViewController: UIViewController {
         self.view.backgroundColor = Theme.BUTTON_BACKGROUND_COLOR
         
         configureTitleLabel()
-        //configureWeight()
+        configureWeight()
     }
 
     private func configureTitleLabel() {
@@ -57,9 +57,48 @@ class BMICalculatorViewController: UIViewController {
         ])
         
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 32)
+        titleLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 24)
         titleLabel.textColor = .white
         titleLabel.adjustsFontSizeToFitWidth = true
+    }
+    
+    private func configureWeight() {
+        weightField = CCTextField(placeholder: "", backgroundColor: Theme.VIEW_BACKGROUND_COLOR!, borderColor: Theme.BUTTON_TEXT_COLOR!)
+        weightField.textAlignment = .center
+        self.view.addSubview(weightField)
+        
+        weightField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            weightField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            weightField.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: vcWidth * 3 / 7),
+            weightField.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -vcWidth / 3)
+        ])
+        
+        weightLabel = UILabel()
+        weightLabel.text = "Weight:"
+        weightLabel.textColor = .white
+        weightLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+        self.view.addSubview(weightLabel)
+        
+        weightLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            weightLabel.rightAnchor.constraint(equalTo: weightField.leftAnchor, constant: -Theme.LABEL_TEXTFIELD_PADDING),
+            weightLabel.topAnchor.constraint(equalTo: weightField.topAnchor),
+            weightLabel.bottomAnchor.constraint(equalTo: weightField.bottomAnchor)
+        ])
+        
+        poundsLabel = UILabel()
+        poundsLabel.text = "lbs"
+        poundsLabel.textColor = .white
+        poundsLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
+        self.view.addSubview(poundsLabel)
+        
+        poundsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            poundsLabel.leftAnchor.constraint(equalTo: weightField.rightAnchor, constant: Theme.LABEL_TEXTFIELD_PADDING),
+            poundsLabel.topAnchor.constraint(equalTo: weightField.topAnchor),
+            poundsLabel.bottomAnchor.constraint(equalTo: weightField.bottomAnchor)
+        ])
     }
 }
 

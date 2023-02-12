@@ -39,8 +39,6 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     let states = ["", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
     var statePickerView = UIPickerView()
     
-    private var labelTextFieldPadding = CGFloat(10)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -89,7 +87,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     }
     
     private func configureAge() {
-        ageTextField = CCTextField(placeholder: "")
+        ageTextField = CCTextField(placeholder: "", backgroundColor: .white, borderColor: Theme.BUTTON_BACKGROUND_COLOR!)
         ageTextField.delegate = self
         self.view.addSubview(ageTextField)
         
@@ -104,7 +102,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         
         ageLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            ageLabel.rightAnchor.constraint(equalTo: ageTextField.leftAnchor, constant: -labelTextFieldPadding),
+            ageLabel.rightAnchor.constraint(equalTo: ageTextField.leftAnchor, constant: -Theme.LABEL_TEXTFIELD_PADDING),
             ageLabel.topAnchor.constraint(equalTo: ageTextField.topAnchor),
             ageLabel.bottomAnchor.constraint(equalTo: ageTextField.bottomAnchor)
             
@@ -114,12 +112,12 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     }
     
     private func configureSex() {
-        sexTextField = CCTextField(placeholder: "")
+        sexTextField = CCTextField(placeholder: "", backgroundColor: .white, borderColor: Theme.BUTTON_BACKGROUND_COLOR!)
         self.view.addSubview(sexTextField)
         
         sexTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            sexTextField.topAnchor.constraint(equalTo: ageTextField.bottomAnchor, constant: labelTextFieldPadding * 1.5),
+            sexTextField.topAnchor.constraint(equalTo: ageTextField.bottomAnchor, constant: Theme.LABEL_TEXTFIELD_PADDING * 1.5),
             sexTextField.leftAnchor.constraint(equalTo: ageTextField.leftAnchor),
             sexTextField.rightAnchor.constraint(equalTo: ageTextField.rightAnchor)
         ])
@@ -128,7 +126,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         
         sexLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            sexLabel.rightAnchor.constraint(equalTo: sexTextField.leftAnchor, constant: -labelTextFieldPadding),
+            sexLabel.rightAnchor.constraint(equalTo: sexTextField.leftAnchor, constant: -Theme.LABEL_TEXTFIELD_PADDING),
             sexLabel.topAnchor.constraint(equalTo: sexTextField.topAnchor),
             sexLabel.bottomAnchor.constraint(equalTo: sexTextField.bottomAnchor)
             
@@ -144,13 +142,13 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     }
     
     private func configureNumChildren() {
-        childrenTextField = CCTextField(placeholder: "")
+        childrenTextField = CCTextField(placeholder: "", backgroundColor: .white, borderColor: Theme.BUTTON_BACKGROUND_COLOR!)
         childrenTextField.delegate = self
         self.view.addSubview(childrenTextField)
         
         childrenTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            childrenTextField.topAnchor.constraint(equalTo: sexTextField.bottomAnchor, constant: labelTextFieldPadding * 1.5),
+            childrenTextField.topAnchor.constraint(equalTo: sexTextField.bottomAnchor, constant: Theme.LABEL_TEXTFIELD_PADDING * 1.5),
             childrenTextField.leftAnchor.constraint(equalTo: sexTextField.leftAnchor),
             childrenTextField.rightAnchor.constraint(equalTo: sexTextField.rightAnchor)
         ])
@@ -159,17 +157,16 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         
         childrenLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            childrenLabel.rightAnchor.constraint(equalTo: childrenTextField.leftAnchor, constant: -labelTextFieldPadding),
+            childrenLabel.rightAnchor.constraint(equalTo: childrenTextField.leftAnchor, constant: -Theme.LABEL_TEXTFIELD_PADDING),
             childrenLabel.topAnchor.constraint(equalTo: childrenTextField.topAnchor),
             childrenLabel.bottomAnchor.constraint(equalTo: childrenTextField.bottomAnchor)
-            
         ])
         
         childrenLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 16)
     }
     
     private func configureBMI() {
-        bmiTextField = CCTextField(placeholder: "")
+        bmiTextField = CCTextField(placeholder: "", backgroundColor: .white, borderColor: Theme.BUTTON_BACKGROUND_COLOR!)
         bmiTextField.delegate = self
         self.view.addSubview(bmiTextField)
         
@@ -184,7 +181,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         
         bmiLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bmiLabel.rightAnchor.constraint(equalTo: bmiTextField.leftAnchor, constant: -labelTextFieldPadding),
+            bmiLabel.rightAnchor.constraint(equalTo: bmiTextField.leftAnchor, constant: -Theme.LABEL_TEXTFIELD_PADDING),
             bmiLabel.topAnchor.constraint(equalTo: bmiTextField.topAnchor),
             bmiLabel.bottomAnchor.constraint(equalTo: bmiTextField.bottomAnchor)
         ])
@@ -193,7 +190,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         
         bmiButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bmiButton.leftAnchor.constraint(equalTo: bmiTextField.rightAnchor, constant: labelTextFieldPadding),
+            bmiButton.leftAnchor.constraint(equalTo: bmiTextField.rightAnchor, constant: Theme.LABEL_TEXTFIELD_PADDING),
             bmiButton.widthAnchor.constraint(equalToConstant: Theme.SCREEN_WIDTH * 3 / 10),
             bmiButton.topAnchor.constraint(equalTo: bmiTextField.topAnchor),
             bmiButton.bottomAnchor.constraint(equalTo: bmiTextField.bottomAnchor)
@@ -212,7 +209,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     }
     
     private func configureSmoker() {
-        smokerTextField = CCTextField(placeholder: "")
+        smokerTextField = CCTextField(placeholder: "", backgroundColor: .white, borderColor: Theme.BUTTON_BACKGROUND_COLOR!)
         self.view.addSubview(smokerTextField)
         
         smokerTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -227,7 +224,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         
         smokerLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            smokerLabel.rightAnchor.constraint(equalTo: smokerTextField.leftAnchor, constant: -labelTextFieldPadding),
+            smokerLabel.rightAnchor.constraint(equalTo: smokerTextField.leftAnchor, constant: -Theme.LABEL_TEXTFIELD_PADDING),
             smokerLabel.topAnchor.constraint(equalTo: smokerTextField.topAnchor),
             smokerLabel.bottomAnchor.constraint(equalTo: smokerTextField.bottomAnchor)
             
@@ -243,12 +240,12 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     }
     
     private func configureState() {
-        stateTextField = CCTextField(placeholder: "")
+        stateTextField = CCTextField(placeholder: "", backgroundColor: .white, borderColor: Theme.BUTTON_BACKGROUND_COLOR!)
         self.view.addSubview(stateTextField)
         
         stateTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stateTextField.topAnchor.constraint(equalTo: smokerTextField.bottomAnchor, constant: labelTextFieldPadding * 1.5),
+            stateTextField.topAnchor.constraint(equalTo: smokerTextField.bottomAnchor, constant: Theme.LABEL_TEXTFIELD_PADDING * 1.5),
             stateTextField.leftAnchor.constraint(equalTo: smokerTextField.leftAnchor),
             stateTextField.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 12)
         ])
@@ -258,7 +255,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
         
         stateLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stateLabel.rightAnchor.constraint(equalTo: stateTextField.leftAnchor, constant: -labelTextFieldPadding),
+            stateLabel.rightAnchor.constraint(equalTo: stateTextField.leftAnchor, constant: -Theme.LABEL_TEXTFIELD_PADDING),
             stateLabel.topAnchor.constraint(equalTo: stateTextField.topAnchor),
             stateLabel.bottomAnchor.constraint(equalTo: stateTextField.bottomAnchor)
             

@@ -23,6 +23,8 @@ class Theme {
     // set in WelcomeViewController
     public static var SCREEN_WIDTH: CGFloat = 0
     public static var SCREEN_HEIGHT: CGFloat = 0
+    
+    public static let LABEL_TEXTFIELD_PADDING: CGFloat = 10
 }
 
 extension UIColor {

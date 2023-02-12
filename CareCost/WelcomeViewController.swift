@@ -65,7 +65,8 @@ class WelcomeViewController: UIViewController {
         appNameLabel.layer.contentsGravity = .center
         appNameLabel.attributedText = NSAttributedString(string: "CareCost",
                                                          attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 32)!,
-                                                                      NSAttributedString.Key.strokeWidth : -2])
+                                                                      NSAttributedString.Key.strokeWidth : -2,
+                                                                      NSAttributedString.Key.foregroundColor : UIColor.white])
     }
     
     private func configureWelcomeTextView() {
@@ -85,7 +86,7 @@ class WelcomeViewController: UIViewController {
     }
     
     private func configureNameTextField() {
-        nameTextField = CCTextField(placeholder: "Name (optional)")
+        nameTextField = CCTextField(placeholder: "Name (optional)", backgroundColor: .white, borderColor: Theme.BUTTON_BACKGROUND_COLOR!)
         self.view.addSubview(nameTextField)
         
         nameTextField.translatesAutoresizingMaskIntoConstraints = false

@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 class CCTextField: UITextField {
-    init(placeholder: String) {
+    init(placeholder: String, backgroundColor: UIColor, borderColor: UIColor) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         
         self.placeholder = placeholder
-        backgroundColor = .white
+        self.backgroundColor = backgroundColor
         if !placeholder.isEmpty {
             leftView = UIView(frame: CGRect(x: 0, y: 0, width: Theme.BUTTON_PADDING, height: 0))
             leftViewMode = .always
@@ -23,7 +23,7 @@ class CCTextField: UITextField {
         borderStyle = .roundedRect
         layer.borderWidth = 3
         layer.cornerRadius = Theme.CORNER_RADIUS
-        layer.borderColor = Theme.BUTTON_BACKGROUND_COLOR!.cgColor
+        layer.borderColor = borderColor.cgColor
         clipsToBounds = true
     }
     
