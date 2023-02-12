@@ -18,6 +18,8 @@ From the dataset, we created a regression model using Python. The pandas and skl
 
 ## The App
 
+[App Demo Video](https://youtu.be/JYlhY2unmWk)
+
 The CareCost app was built entirely in Xcode using Apple's Swift language. Due to its flexibility as well as robust layout tools, we could easily fix GUI issues as they came up. Additionally, we utilized a powerful third-party library, [Charts](https://github.com/danielgindi/Charts), to help the user visualize our model's predictions.
 
 The app itself contains four main screens, each serving a distinct purpose. After the user is welcomed by our vivid colors and stunning logo, they are taken directly to a page where they can input the metrics needed for our model to do the calculations. On the very next screen, the user is presented with a beautiful graph(again, courtesy of Charts and has the option to select from a range of years, which helps them plan for the future. The app's final screen provides the user with a handful of financial tips and ways to save money, as well as the credible sources from which they came from.
