@@ -45,13 +45,26 @@ class GraphViewController: UIViewController {
         
         self.view.backgroundColor = Theme.VIEW_BACKGROUND_COLOR
         
-        setUpChart()
-        setUpSlider()
+        configureResultLabel()
+        configureChart()
+        configureSlider()
     }
     
     // MARK: Display
     
-    private func setUpSlider() {
+    private func configureResultLabel() {
+        resultLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            resultLabel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 5),
+            resultLabel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -Theme.SCREEN_WIDTH / 5),
+            resultLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
+        ])
+        
+        resultLabel.font = UIFont(name: Theme.DEFAULT_FONT, size: 32)
+        resultLabel.adjustsFontSizeToFitWidth = true
+    }
+    
+    private func configureSlider() {
         yearSlider.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             yearSlider.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: Theme.SCREEN_WIDTH / 3),
@@ -90,7 +103,7 @@ class GraphViewController: UIViewController {
         chartView.data?.setValueFormatter(DigitValueFormatter())
     }
     
-    private func setUpChart() {
+    private func configureChart() {
         chartView = LineChartView()
         self.view.addSubview(chartView)
         
