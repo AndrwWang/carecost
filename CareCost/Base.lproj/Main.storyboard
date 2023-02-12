@@ -324,12 +324,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CareCost Logo" translatesAutoresizingMaskIntoConstraints="NO" id="H9X-u4-3Yc">
+                                <rect key="frame" x="-63" y="695" width="779" height="414"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VeE-op-ylg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="infoTextView" destination="dPn-Xf-HIy" id="iZc-OR-Bni"/>
+                        <outlet property="logoView" destination="H9X-u4-3Yc" id="GYt-bg-Nvp"/>
                         <outlet property="segControl" destination="TTf-75-3d5" id="lNw-zX-yAV"/>
                         <outlet property="sourceButton1" destination="DWU-Kb-1YZ" id="EHf-jx-bG4"/>
                         <outlet property="sourceButton2" destination="AlV-vc-7dD" id="3VH-DJ-7Jo"/>

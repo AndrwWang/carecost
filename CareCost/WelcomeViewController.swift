@@ -36,10 +36,6 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         
         self.nameTextField.delegate = self
         
-//        UIView.animate(withDuration: 14, animations: {
-//            self.logoView.frame.origin.y -= 1000
-//        }, completion: nil)
-        
         animateLogo()
         
     }
@@ -95,7 +91,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         
         appNameLabel.layer.contentsGravity = .center
         appNameLabel.attributedText = NSAttributedString(string: "CareCost",
-                                                         attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 45)!,
+                                                         attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 50)!,
                                                                       NSAttributedString.Key.strokeWidth : -2,
                                                                       NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR])
     }

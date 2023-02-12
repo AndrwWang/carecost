@@ -10,6 +10,7 @@ import UIKit
 class InformationViewController: UIViewController, UITextFieldDelegate {
     private let info = ["Start a Health Savings Account (HSA) or Medical Savings Account (MSA) and claim a tax deduction on savings. Check if your employer’s offer a Flexible Spending Account (FSA) or Health Reimbursement Arrangement (HRA’s) to get reimbursement for medical expenses.", "Always be sure to have adequate savings for sudden, unforeseen medical costs. If you do have enough savings, consider investing in high-deductible health insurance plans with lower monthly premiums. Low premiums will save lots of money in the long run", "Don't be afraid to be cheap! Shop around healthcare providers and compare prices between them. Use telemedicine services that offer virtual consultations which are far cheaper than in-person visits. When you can, choose in-network health care providers as they'll often give better rates. When getting a procedure or surgery, ask if you can get it done at an outpatient clinic as they're cheaper than hospitals. Switch to generic medicines that are cheaper but have the same ingredients and effects as namebrand drugs. Never be afraid to negotiate medical bills.", "One of the most effective and convenient ways to save money on medical costs is to take preventive measuree. Performing regular check ups and taking preventive care will stop more serious and expensive conditions from developing in the future. Other than that, there is no better solution than to simply maintain a healthy lifestyle."]
     
+    @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var segControl: UISegmentedControl!
     @IBOutlet weak var infoTextView: UITextView!
@@ -25,13 +26,34 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
         
         self.view.backgroundColor = Theme.VIEW_BACKGROUND_COLOR
         infoTextView.text = "Click the buttons above to learn more!"
-        //moreInfoLabel = Link(destination: URL(string: "))
+    
         
         configureTitleLabel()
         configureSegementedControl()
         configureInfoTextView()
         configureSourceInfo()
         configureStartOver()
+        
+        animateLogo()
+    }
+    
+    func animateLogo() {
+        let originalFrame = self.logoView.frame
+        self.logoView.alpha = 0
+        UIView.animate(withDuration: 3, animations: {
+            self.logoView.alpha = 1
+        }, completion: { (finished) in
+            if finished {
+                UIView.animate(withDuration: 20, animations: {
+                    self.logoView.frame.origin.y -= 1000
+                }, completion: { (finished) in
+                    if finished {
+                        self.logoView.frame = originalFrame
+                        self.animateLogo()
+                    }
+                })
+            }
+        })
     }
     
     //MARK: Display
