@@ -13,7 +13,7 @@ class DigitValueFormatter : NSObject, ValueFormatter {
                         entry: ChartDataEntry,
                         dataSetIndex: Int,
                         viewPortHandler: ViewPortHandler?) -> String {
-        let valueWithoutDecimalPart = String(format: "$%.2f", value)
+        let valueWithoutDecimalPart = String(format: "$%.0f", value)
         return "\(valueWithoutDecimalPart)"
     }
 }

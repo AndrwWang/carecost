@@ -24,6 +24,8 @@ class GraphViewController: UIViewController {
     ]
     
     @IBOutlet weak var resultLabel: UILabel!
+    
+    private var chartContainer: UIView!
     private var chartView: LineChartView!
     
     private var sliderValue = 5
@@ -45,10 +47,6 @@ class GraphViewController: UIViewController {
         
         setUpChart()
         setUpSlider()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        
     }
     
     // MARK: Display
@@ -80,8 +78,14 @@ class GraphViewController: UIViewController {
     }
     
     private func setChartData() {
-        let dataset = LineChartDataSet(entries: getGraphData(), label: "Charge")
+        let dataset = LineChartDataSet(entries: getGraphData(), label: "")
+        dataset.colors = [Theme.BUTTON_TEXT_COLOR!]
+        dataset.circleColors = [Theme.BUTTON_TEXT_COLOR!]
+        
         let data = LineChartData(dataSet: dataset)
+        data.setValueFont(UIFont(name: Theme.DEFAULT_FONT, size: 12)!)
+        data.setValueTextColor(Theme.BUTTON_TEXT_COLOR!)
+        
         chartView.data = data
         chartView.data?.setValueFormatter(DigitValueFormatter())
     }
@@ -98,7 +102,27 @@ class GraphViewController: UIViewController {
             chartView.heightAnchor.constraint(equalTo: chartView.widthAnchor)
         ])
         
-        chartView.data?.setValueFont(UIFont(name: Theme.DEFAULT_FONT, size: 12)!)
+        chartView.backgroundColor = Theme.BUTTON_BACKGROUND_COLOR
+        chartView.layer.cornerRadius = Theme.CORNER_RADIUS
+        chartView.layer.masksToBounds = true
+        chartView.minOffset = 30
+        let graphFont = UIFont(name: Theme.DEFAULT_FONT, size: 12)!
+        
+        
+        chartView.setScaleEnabled(false)
+        chartView.legend.enabled = false
+
+        let valFormatter = NumberFormatter()
+        valFormatter.numberStyle = .currency
+        valFormatter.maximumFractionDigits = 0
+        valFormatter.currencySymbol = "$"
+
+        chartView.xAxis.labelFont = graphFont
+        chartView.xAxis.labelPosition = .bottom
+        chartView.xAxis.labelTextColor = Theme.BUTTON_TEXT_COLOR!
+        chartView.leftAxis.drawLabelsEnabled = false
+        chartView.rightAxis.drawLabelsEnabled = false
+        
         setChartData()
     }
     
