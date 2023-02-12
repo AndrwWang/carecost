@@ -1,6 +1,6 @@
 # CareCost - healthcare expenses made simpler
 
-For Hacklytics 2023 @ Georgia Tech, our team created CareCost, a mobile iOS application that forecasts a user's out-of-pocket healthcare expenses based on a variety of metrics.
+For Hacklytics 2023 @ Georgia Tech, our team created CareCost, a mobile iOS application that forecasts a user's out-of-pocket healthcare expenses based on a variety of metrics. Authors: Frank Gao & Andrew Wang
 
 ## The Inspiration
 
