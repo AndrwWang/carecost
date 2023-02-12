@@ -28,7 +28,4 @@ Given that this hackathon revolved around data science, our group's main challen
 
 ## Closing Thoughts
 
-Regardless of how we place, Hacklytics 2023 and CareCost has inspired us as developers, learners, and community members. After discovering the vast amounts of data that come from all over the world, we now understand the impact that data science has on future generations of technology. just like the endless array of constellations in the night sky...
-
-
-Frank Gao & Andrew Wang
+Regardless of how we place, Hacklytics 2023 and CareCost has inspired us as developers, learners, and community members. After discovering the vast amounts of data that come from all over the world, we now understand the impact that data science has on future generations of technology, just like the endless array of constellations in the night sky...
