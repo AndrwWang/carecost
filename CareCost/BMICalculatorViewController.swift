@@ -213,19 +213,17 @@ class BMICalculatorViewController: UIViewController {
     }
     
     private func shouldEnableCalculateButton() -> Bool {
-        guard let _ = Double(weightField.text!) else {
+        guard let weight = Double(weightField.text!) else {
             return false
         }
-        
         guard let feet = Double(feetField.text!) else {
             return false
         }
-        
         guard let inches = Double(inchesField.text!) else {
             return false
         }
         
-        return feet >= 0 && inches >= 0
+        return weight >= 0 && feet >= 0 && inches >= 0
     }
 
     //MARK: Action
