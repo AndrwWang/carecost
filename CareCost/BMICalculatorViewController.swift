@@ -47,6 +47,8 @@ class BMICalculatorViewController: UIViewController {
         configureCalculateButton()
     }
 
+    //MARK: Display
+    
     private func configureTitleLabel() {
         titleLabel = UILabel()
         titleLabel.text = "Calculate Your BMI\n(Body Mass Index)"
@@ -70,6 +72,7 @@ class BMICalculatorViewController: UIViewController {
         weightField = CCTextField(placeholder: "", backgroundColor: Theme.VIEW_BACKGROUND_COLOR!, borderColor: Theme.BUTTON_TEXT_COLOR!)
         weightField.textAlignment = .center
         weightField.textColor = .white
+        weightField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         self.view.addSubview(weightField)
         
         weightField.translatesAutoresizingMaskIntoConstraints = false
@@ -110,6 +113,7 @@ class BMICalculatorViewController: UIViewController {
         feetField = CCTextField(placeholder: "", backgroundColor: Theme.VIEW_BACKGROUND_COLOR!, borderColor: Theme.BUTTON_TEXT_COLOR!)
         feetField.textAlignment = .center
         feetField.textColor = .white
+        feetField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         self.view.addSubview(feetField)
         
         feetField.translatesAutoresizingMaskIntoConstraints = false
@@ -149,6 +153,7 @@ class BMICalculatorViewController: UIViewController {
         inchesField = CCTextField(placeholder: "", backgroundColor: Theme.VIEW_BACKGROUND_COLOR!, borderColor: Theme.BUTTON_TEXT_COLOR!)
         inchesField.textAlignment = .center
         inchesField.textColor = .white
+        inchesField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         self.view.addSubview(inchesField)
         
         inchesField.translatesAutoresizingMaskIntoConstraints = false
@@ -195,6 +200,7 @@ class BMICalculatorViewController: UIViewController {
         calculateButton.layer.cornerRadius = Theme.CORNER_RADIUS / 2
         
         calculateButton.addTarget(self, action: #selector(calculateClicked), for: .touchUpInside)
+        calculateButton.isEnabled = shouldEnableCalculateButton()
     }
     
     //MARK: Helper
@@ -206,7 +212,27 @@ class BMICalculatorViewController: UIViewController {
         return kg / metersSquared
     }
     
+    private func shouldEnableCalculateButton() -> Bool {
+        guard let _ = Double(weightField.text!) else {
+            return false
+        }
+        
+        guard let feet = Double(feetField.text!) else {
+            return false
+        }
+        
+        guard let inches = Double(inchesField.text!) else {
+            return false
+        }
+        
+        return feet >= 0 && inches >= 0
+    }
+
     //MARK: Action
+    
+    @objc func textFieldDidChange() {
+        calculateButton.isEnabled = shouldEnableCalculateButton()
+    }
     
     @objc func calculateClicked() {
         delegate?.bmiTextField.text = String(format: "%.1f", calculateBMI(weightInPounds: Double(weightField.text!)!, heightInInches: Double(feetField.text!)! * 12 + Double(inchesField.text!)!))
