@@ -16,6 +16,8 @@ import Foundation
 import UIKit
 
 class BMICalculatorViewController: UIViewController {
+    var delegate: InputViewController?
+    
     private var titleLabel: UILabel!
     
     private var weightLabel: UILabel!
@@ -190,8 +192,27 @@ class BMICalculatorViewController: UIViewController {
         calculateButton.setAttributedTitle(calculateTitle, for: .normal)
         calculateButton.setBackgroundColor(color: Theme.BUTTON_TEXT_COLOR!, forState: .normal)
         calculateButton.titleLabel!.textAlignment = .center
-        
         calculateButton.layer.cornerRadius = Theme.CORNER_RADIUS / 2
+        
+        calculateButton.addTarget(self, action: #selector(calculateClicked), for: .touchUpInside)
+    }
+    
+    //MARK: Helper
+    
+    private func calculateBMI(weightInPounds: Double, heightInInches: Double) -> Double {
+        let kg = weightInPounds * 0.45359237
+        let metersSquared = pow(heightInInches * 0.0254, 2)
+        
+        return kg / metersSquared
+    }
+    
+    //MARK: Action
+    
+    @objc func calculateClicked() {
+        delegate?.bmiTextField.text = String(format: "%.1f", calculateBMI(weightInPounds: Double(weightField.text!)!, heightInInches: Double(feetField.text!)! * 12 + Double(inchesField.text!)!))
+
+        dismiss(animated: true)
+        
     }
 }
 

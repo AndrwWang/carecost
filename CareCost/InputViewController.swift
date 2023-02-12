@@ -21,7 +21,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     private var childrenTextField: UITextField!
     
     @IBOutlet weak var bmiLabel: UILabel!
-    private var bmiTextField: UITextField!
+    var bmiTextField: UITextField!
     @IBOutlet weak var bmiButton: UIButton!
     
     @IBOutlet weak var smokerLabel: UILabel!
@@ -313,6 +313,9 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
             vc.popoverPresentationController?.delegate = self
             
             vc.preferredContentSize = CGSize(width: Theme.SCREEN_WIDTH * 3 / 4, height: Theme.SCREEN_HEIGHT / 3)
+            
+            (vc as! BMICalculatorViewController).delegate = self
+            
             self.present(vc, animated: true, completion: nil)
         }
     }
