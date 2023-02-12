@@ -12,14 +12,24 @@ class InformationViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var informationLabel: UILabel!
     
-    @IBOutlet weak var moreInfoLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         informationLabel.text = "Click the buttons above to learn more!"
-        //moreInfoLabel = Link(destination: URL(string: "))
+        
         
     }
+    
+    @IBAction func moreInfoButton1(_ sender: UIButton) {
+        UIApplication.shared.open(URL(string: "https://www.healthcare.gov")! as URL, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func moreInfoButton2(_ sender: UIButton) {
+        UIApplication.shared.open(URL(string: "https://medlineplus.gov/")! as URL, options: [:], completionHandler: nil)
+    }
+    
+    
+    
     
     @IBAction func segmentedControl(_ sender: UISegmentedControl) {
         if (sender.selectedSegmentIndex == 0) {

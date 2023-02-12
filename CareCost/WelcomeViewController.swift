@@ -94,7 +94,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         
         appNameLabel.layer.contentsGravity = .center
         appNameLabel.attributedText = NSAttributedString(string: "CareCost",
-                                                         attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 32)!,
+                                                         attributes: [NSAttributedString.Key.font : UIFont(name: Theme.DEFAULT_FONT, size: 45)!,
                                                                       NSAttributedString.Key.strokeWidth : -2,
                                                                       NSAttributedString.Key.foregroundColor : Theme.BUTTON_TEXT_COLOR])
     }

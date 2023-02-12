@@ -61,7 +61,7 @@ class InputViewController: UIViewController, UITextFieldDelegate, UIPopoverPrese
     func animateLogo() {
         let originalFrame = self.logoView.frame
         self.logoView.alpha = 0
-        UIView.animate(withDuration: 3, animations: {
+        UIView.animate(withDuration: 5, animations: {
             self.logoView.alpha = 1
         }, completion: { (finished) in
             if finished {

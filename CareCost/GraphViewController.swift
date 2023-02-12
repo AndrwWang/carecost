@@ -23,6 +23,7 @@ class GraphViewController: UIViewController {
         "southwest" : -373.04175627250527
     ]
     
+    @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var resultLabel: UILabel!
     
     private var chartContainer: UIView!
@@ -48,6 +49,27 @@ class GraphViewController: UIViewController {
         configureResultLabel()
         configureChart()
         configureSlider()
+        
+        animateLogo()
+    }
+    
+    func animateLogo() {
+        let originalFrame = self.logoView.frame
+        self.logoView.alpha = 0
+        UIView.animate(withDuration: 3, animations: {
+            self.logoView.alpha = 1
+        }, completion: { (finished) in
+            if finished {
+                UIView.animate(withDuration: 20, animations: {
+                    self.logoView.frame.origin.y -= 1000
+                }, completion: { (finished) in
+                    if finished {
+                        self.logoView.frame = originalFrame
+                        self.animateLogo()
+                    }
+                })
+            }
+        })
     }
     
     // MARK: Display
