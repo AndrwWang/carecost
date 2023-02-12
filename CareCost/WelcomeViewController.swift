@@ -62,10 +62,11 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             }
         })
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            self.view.endEditing(true)
-            return false
-        }
+        self.view.endEditing(true)
+        return false
+    }
     
     // MARK: Display
     

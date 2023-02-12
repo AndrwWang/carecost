@@ -15,7 +15,7 @@ import Foundation
 
 import UIKit
 
-class BMICalculatorViewController: UIViewController {
+class BMICalculatorViewController: UIViewController, UITextFieldDelegate {
     var delegate: InputViewController?
     
     private var titleLabel: UILabel!
@@ -72,7 +72,7 @@ class BMICalculatorViewController: UIViewController {
         weightField = CCTextField(placeholder: "", backgroundColor: Theme.VIEW_BACKGROUND_COLOR!, borderColor: Theme.BUTTON_TEXT_COLOR!)
         weightField.textAlignment = .center
         weightField.textColor = .white
-        weightField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        weightField.delegate = self
         self.view.addSubview(weightField)
         
         weightField.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +113,7 @@ class BMICalculatorViewController: UIViewController {
         feetField = CCTextField(placeholder: "", backgroundColor: Theme.VIEW_BACKGROUND_COLOR!, borderColor: Theme.BUTTON_TEXT_COLOR!)
         feetField.textAlignment = .center
         feetField.textColor = .white
-        feetField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        feetField.delegate = self
         self.view.addSubview(feetField)
         
         feetField.translatesAutoresizingMaskIntoConstraints = false
@@ -153,7 +153,7 @@ class BMICalculatorViewController: UIViewController {
         inchesField = CCTextField(placeholder: "", backgroundColor: Theme.VIEW_BACKGROUND_COLOR!, borderColor: Theme.BUTTON_TEXT_COLOR!)
         inchesField.textAlignment = .center
         inchesField.textColor = .white
-        inchesField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        inchesField.delegate = self
         self.view.addSubview(inchesField)
         
         inchesField.translatesAutoresizingMaskIntoConstraints = false
@@ -228,7 +228,12 @@ class BMICalculatorViewController: UIViewController {
 
     //MARK: Action
     
-    @objc func textFieldDidChange() {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
         calculateButton.isEnabled = shouldEnableCalculateButton()
     }
     
